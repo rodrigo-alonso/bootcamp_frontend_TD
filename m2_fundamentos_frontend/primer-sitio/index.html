@@ -14,7 +14,9 @@
     -->
 
     <!--link: etiqueta para relacionar los ficheros css y/o iconos-->
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- CSS hacia abajo va sobrescribiendo los estilos de mas arriba-->
+    
 
     <!--script: etiqueta que sirve para agregar código javascript o ficheros js-->
     <script></script>
@@ -24,12 +26,35 @@
 
     <!--favicon: ícono que aparece en la pestaña del navegador-->
     <link rel="shortcut icon" href="assets/img/rocket.png">
+    <!--
+    <style type="text/css">
+        body {
+            /* Font-family indica opciones de tipografía que se usan en caso de no tener la fuente deseada */
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            /* rgb, hex, hsl */
+            color: rgb(99, 225, 23);
+            color: #634817;
+            color: hsl(33%, 66%, 9%);
+            font-size: 50px;
+        }
+        h3 {
+            font-size: 30px;
+        }
+        p {
+            color: green;
+            font-size: 18px;
+        }
+    </style>
+    -->
 </head>
 <body id="inicio">
     <header>
-        <h1>Hola Mundo!!!</h1>
+        <h1 class="subrayado">Hola Mundo!!!</h1>
         <h2>Bienvenidos a mi primera página web!!!</h2>
-        <h3>WYISWYM - what you see is what you mean</h3>
+        <!-- El estilo que manda es el de la etiqueta -->
+        <h3 style="color: red; margin-bottom: 50px; font-size: 20px;">WYISWYM - what you see is what you mean</h3>
     </header>
     <in
 
@@ -54,7 +79,7 @@
     <section>
         <article>
             <h3>Manejo de párrafos</h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum itaque quo dicta corrupti pariatur voluptate quos dignissimos illum voluptatum? Commodi exercitationem labore sunt eum a tempora hic voluptatibus atque cumque.</p>
+            <p style="color: green; font-weight: lighter; font-style: italic;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum itaque quo dicta corrupti pariatur voluptate quos dignissimos illum voluptatum? Commodi exercitationem labore sunt eum a tempora hic voluptatibus atque cumque.</p>
             <p> Para obtener mas informacion descarga el siguiente documento<a href="assets/docs/shit-zu.pdf" download="nombre_configurable"> Documento.pdf</a></p>
             <br>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos ducimus nihil sequi quos earum culpa?</p>
@@ -130,6 +155,7 @@
     <section>
         <article>
             <h3>Manejo de imagenes</h3>
+            <p>Las imágenes pueden ser locales o externas</p>
             <img src="assets/img/shit-zu.jpg" alt="Perro shit-zu mirando el horizonte" width="500px">
             <br>
             <img src="assets/img/rocket.png" alt="Cohete despegando" width="250px" height="250px">
