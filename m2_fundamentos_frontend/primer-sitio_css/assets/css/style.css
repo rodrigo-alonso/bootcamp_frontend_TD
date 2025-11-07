@@ -27,7 +27,12 @@ body {
   background-color: var(--white-color);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin-bottom: 1rem;
 }
 
@@ -71,14 +76,39 @@ article {
     line-height: 1.5;
   }
 
-  ol, ul {
+  ol,
+  ul {
     padding: 1rem;
-    
+
     li {
       margin-left: 1rem;
       margin-bottom: 0.5rem;
     }
   }
+}
+
+aside {
+    right: 0;
+    position: absolute;
+    width: 25%;
+    height: 100%;
+    margin: 1rem;
+    padding: 2rem;
+    background-color: var(--light-color);
+    color: var(--dark-color);
+
+    ul {
+        list-style-image: url("../img/rocket.svg");
+    }
+
+    ol, ul {
+        padding: 2rem;
+
+        li {
+            margin-left: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+    }    
 }
 
 .footer {
@@ -103,13 +133,115 @@ article {
     color: var(--light-color);
     text-decoration: none; /* Sin subrayado */
   }
-  
+
   .link-footer:hover {
     text-decoration: underline;
   }
-
 }
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+
+  th,
+  td {
+    border: 1px solid var(--dark-color);
+    padding: 0.5rem;
+  }
+
+  th {
+    padding: 1rem;
+    text-align: center;
+    background-color: var(--blue-color);
+    color: var(--white-color);
+  }
+
+  tr:nth-child(even) {
+    background-color: var(--light-color);
+  }
+
+  tbody tr:hover {
+    background-color: var(--celeste-color);
+  }
+
+  tbody tr:nth-child(odd) {
+    background-color: var(--white-color);
+  }
+
+  tfoot tr {
+    background-color: var(--dark-color);
+    color: var(--white-color);
+  }
+}
+
+form {
+  margin: 0.5rem;
+  padding: 1rem;
+  border: 1px solid var(--green-color);
+  border-radius: 0.5rem;
+
+  .label {
+    font-weight: bold;
+    margin: 0.5rem 0 10rem 0;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="date"],
+  input[type="time"],
+  input[type="number"] {
+    width: 100%;
+    padding: 0.9rem;
+    box-sizing: border-box;
+    border-radius: 0.3rem;
+    margin-bottom: 1rem;
+  }
+
+  input[type="radio"],
+  input[type="checkbox"] {
+    margin-bottom: 1rem;
+    margin-right: 0.5rem;
+  }
+
+  select {
+    width: 100%;
+    padding: 0.9rem;
+    box-sizing: border-box;
+    border-radius: 0.3rem;
+    margin-bottom: 1rem;
+    background-color: var(--white-color);
+  }
+
+  input[type="url"] {
+    width: 100%;
+    padding: 0.9rem;
+    box-sizing: border-box;
+    border-radius: 0.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+
+  input[type="submit"],
+  input[type="reset"] {
+    background-color: var(--green-color);
+    color: var(--white-color);
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    text-decoration: none;
+    
+  }
+}
+
+/*
 p {
   color: var(--dark-color);
   font-size: 18px;
@@ -131,7 +263,7 @@ aside {
   max-resolution: 0.5rem;
 }
 
-/*
+
 #subtitle {
   text-decoration: overline;
 }
