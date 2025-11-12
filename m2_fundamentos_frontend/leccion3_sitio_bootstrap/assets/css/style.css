@@ -1,6 +1,33 @@
-@charset "UTF-8";
+:root {
+  --brik-color: #E35336;
+}
 
 .img-navbar {
   height: 30px;
   border-radius: 50%;
+}
+
+.carousel .carousel-indicators button {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 100%;
+  border-spacing: 150px;
+  margin: 1rem;
+}
+
+/* 
+Indicador activo del carrusel modificado 
+para que sea más grande.
+*/
+.carousel .carousel-indicators .active {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 100%;
+  border-spacing: 150px;
+  margin: 1rem;
+}
+
+.accordion .accordion-item .accordion-button {
+  background-color: var(--brik-color);
+  color: white;
 }
