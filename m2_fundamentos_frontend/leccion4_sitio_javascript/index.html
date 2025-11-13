@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS y JS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <script>
+        function mostrarFecha() {
+            let fechaActual = new Date();
+            document.getElementById("fecha").innerHTML = fechaActual;
+            console.log(fechaActual);
+        }
+        function borrarFecha() {
+            document.getElementById("fecha").innerHTML = '';
+        }
+    </script>
+    
+
+    <title>Document</title>
+</head>
+
+<body onload="mostrarFechaActualizable()">
+    <header class="container-fluid bg-dark text-white p-3 text-center">
+        <h1 id="encabezado1" onmouseenter="mostrarFecha()" onmouseleave="borrarFecha()">Introduccion a JavaScript</h1>
+        <p id="fecha"></p>
+        <p id="saludo"></p>
+        <!-- onclick es un evento, document.getElementById> accede al id y innerHTML cambia el contenido y new Date() obtiene la fecha actual -->
+        <!-- Es solo un ejemplo y es poco practico -->
+        <!--
+        <button class="btn btn-outline-light" onclick="document.getElementById('fecha').innerHTML = new Date()" >Push the fucking button!! &#128074;</button>
+        -->
+        <button class="btn btn-outline-light" onclick="document.getElementById('fecha').innerHTML = new Date()" >Push the fucking button!! &#128074;</button>
+    </header>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    <!-- Llama al archivo js y Siempre va debajo de bootstrap -->
+    <script src="assets/js/index.js"></script>
+
+</body>
+
+</html>
