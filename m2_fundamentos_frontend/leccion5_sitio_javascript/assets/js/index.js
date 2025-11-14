@@ -23,12 +23,12 @@ function mostrarFechaActualizable() {
     */
 }
 
-function encender() {
+function cazadores() {
     document.getElementById('pilares').src='assets/img/tanjiro.jpg';
     document.getElementById('pilares').alt='Tanjiro Kamado';
 }
 
-function apagar() {
+function pilares() {
     document.getElementById('pilares').src='assets/img/pilares.jpg';
     document.getElementById('pilares').alt='Pilares de Demon Slayer';
 }

@@ -27,7 +27,7 @@
     <title>Document</title>
 </head>
 
-<body onload="mostrarFechaActualizable()">
+<body onload="mostrarFechaActualizable(); indicadoresEconomicos()">
     <header class="container-fluid bg-dark text-white p-3 text-center">
         <h1 id="encabezado1" onmouseenter="mostrarFecha()" onmouseleave="borrarFecha()">Introduccion a JavaScript</h1>
         <p id="fecha"></p>
@@ -46,14 +46,14 @@
     <div class="container my-2">
         <div class="row text-center">
             <div class="col-4 align-center">
-                <button id="btn1" onclick="encender()" class="btn btn-outline-warning">Enciende tu corazon</button>
+                <button id="btn1" onclick="cazadores()" class="btn btn-outline-warning">Cazadores</button>
             </div>
             <div class="col-4">
-                <img onmouseenter="encender()" onmouseleave="apagar()" id="pilares" src="assets/img/pilares.jpg" alt=""
+                <img onmouseenter="cazadores()" onmouseleave="pilares()" id="pilares" src="assets/img/pilares.jpg" alt=""
                     style="width: 20rem;">
             </div>
             <div class="col-4">
-                <button id="btn2" onclick="apagar()" class="btn btn-outline-success">Apaga tu corazon</button>
+                <button id="btn2" onclick="pilares()" class="btn btn-outline-success">Pilares</button>
             </div>
         </div>
     </div>
@@ -108,12 +108,21 @@
             <table class="table table-hover">
                 <thead class="table-dark">
                     <tr>
-                        <th>Indicador</th>
+                        <th class="text-start">Codigo</th>
+                        <th class="text-center">Nombre</th>
                         <th class="text-center">Unidad de Medida</th>
+                        <th class="text-center">Fecha</th>
                         <th class="text-end">Valor</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <tr>
+                        <td id="codigo" class="fw-bold"></td>
+                        <td id="nombre" class="fw-bold"></td>
+                        <td id="unidad_medida" class="fw-bold"></td>
+                        <td id="fecha" class="fw-bold"></td>
+                        <td id="valor" class="fw-bold"></td>
+                    </tr>
                     <tr>
                         <td></td>
                         <td></td>
@@ -147,6 +156,7 @@
     <!-- Llama al archivo js y Siempre va debajo de bootstrap -->
     <script src="assets/js/index.js"></script>
     <script src="assets/js/calculadora.js"></script>
+    <script src="assets/js/mindicador_cl.js"></script>
 
 </body>
 
