@@ -32,10 +32,12 @@ function indicadoresEconomicos() {
             dailyIndicators.forEach(e => {
                 let unidad_medida = new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', maximumFractionDigits: 2 })
                     .format(e.valor);
+                document.createElement
                 document.getElementById('nombre').innerHTML = e.nombre;
                 document.getElementById('unidad_medida').innerHTML = unidad_medida;
             });
-            */
+            */z
+            
         })
         .catch(function (error) {
             console.error('RequestFailed: ', error);
