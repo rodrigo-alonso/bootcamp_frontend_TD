@@ -25,6 +25,7 @@ $(function () {
         $('#table_body').append(table_body);
 
     }).fail(function () {
+        // Empleo de sweetalert2 para mostrar un mensaje de error
         Swal.fire({
             title: "Ups!",
             text: "Al parecer tenemos problemitas con la conexion a la API de Countries.",
@@ -33,6 +34,7 @@ $(function () {
     });
 });
 
+// Funcion para filtrar los paises a tiempo real
 $(function(){
     // Cuando escribo una letra y al subir el keycup se ejecuta la funcion
     $('#filtro').on('keyup', function() {
