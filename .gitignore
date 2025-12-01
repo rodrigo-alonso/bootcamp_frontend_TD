@@ -20,3 +20,7 @@ rad.json
 *.flf
 #Test results file
 TestResults.xml
+# node_modules folder 
+node_modules/
+# JavaScript map files
+*.css.map
