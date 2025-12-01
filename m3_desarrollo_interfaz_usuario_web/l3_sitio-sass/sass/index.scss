@@ -1,0 +1,53 @@
+/* Instalacion SASS*/
+// npm install -g sass (para instalar sass globalmente)
+// npm install sass (para instalar sass en el proyecto)
+// sass --watch sass/index.scss css/styles.css (para compilar y observar cambios)
+
+//Comentarios de una línea... que no serán compilados... no aparecerán en el css
+/*
+Comentarios de más de una línea
+que si aparecerán en el css
+*/
+// _variables.scss y otros son parciales que serán importados en index.scss
+// siempre los parciales comienzan con _
+@use 'base';
+@use 'variables';
+@use 'nesting';
+@use 'mixins';
+@use 'estructuras';
+@use 'funciones';
+
+// Ejemplo de variables
+// Importante evaluar la utilidad de crear variables
+$global: 'bold'; // Variable global 
+$margin: 10px, 10px, 20px, 40px;
+$estilos: ( // Variable tipo mapa con llaves y valores
+    'primary': blue,
+    'secondary': gray,
+    'shadow': 1px 1px solid black
+);
+
+// La variable local tiene preferencia sobre la global dentro de su scope
+body {
+    $local: steelblue; // Variable local
+    $global: steelblue; // Variable local que sobreescribe la global
+    font-family: variables.$font-family;
+    color: var(variables.$primary);
+}
+
+h1, h2, h3 {
+    font-weight: $global;
+    // Siempre que se llama a una funcion de otro modulo, se debe usar el nombre del modulo
+    font-size: funciones.pixel-to-em(60px); // Llamada a funcion definida en _funciones.scss
+}
+
+.p-bold {
+  font-weight: $global;
+}
+
+.header {
+    //background-color: $local; // No se puede usar variable local fuera del scope
+    margin: $margin;
+    @debug 'El margin es: #{$margin}';
+}
+

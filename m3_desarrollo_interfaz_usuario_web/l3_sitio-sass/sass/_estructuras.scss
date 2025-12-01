@@ -1,0 +1,57 @@
+// Ejemplo de estructura de un ciclo @for
+// usando through (incluye el ultimo valor)
+// si se usa to, no incluye el ultimo valor
+@for $iterator from 0 through 9 {
+    // Condicional dentro del ciclo
+    // No es obligatorio usar () en la condicion
+    @if ($iterator == 0) { // Si iterator es 0
+        .m-#{$iterator} {
+            margin: $iterator; // margin: 0;
+        }
+    } @else { // Si iterator no es 0
+        .m-#{$iterator} {
+            margin: $iterator * 1em; // margin: 1em, 2em, 3em, ..., 9em
+        }
+    }
+    // Interporlar variables dentro de strings con #{$variable}
+    /*
+    .m-#{$iterator} {
+        margin: $iterator * 1em;
+    }
+    */
+}
+// Otra forma de definir una lista (con coma o espacio)
+$margenes: 0 1 2 3 4 5 6 7 8 9;
+@each $margen in $margenes { // Recorre cada valor de la lista
+    @if ($margen == 0) { // Si margen es 0
+        .p-#{padding} {
+            padding: $padding; // padding: 0;
+        }
+    } @else { // Si margen no es 0
+        .p-#{padding} {
+            padding: $padding * 1em; // padding: 1em, 2em, ..., 9em
+        }
+    } 
+}
+
+/* IMPORTANTE: No mezclar unidades en operaciones matematicas
+   Ejemplo incorrecto:
+   $valor: 10px + 2em; // No se puede sumar px con em
+*/
+
+// mapas se escriben con ()
+$estilos: (
+    "primary": blue,
+    "secondary": gray,
+    "shadow": 1px, 1px solid black
+);
+
+@each $key, $value in $estilos {
+    .#{$key} {
+        @if ($key != shadow) {
+            color: $value;
+        } @else {
+            box-shadow: $value;
+        }
+    }
+}

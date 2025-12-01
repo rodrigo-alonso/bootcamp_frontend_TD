@@ -1,0 +1,74 @@
+// Estructura que define estilos reutilizables
+
+// Mixin para centrar elementos usando Flexbox
+@mixin center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// Mixin para resetear estilos de listas
+@mixin reset-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+// Mixin para cambiar 
+@mixin horizontal-list {
+    @include reset-list();
+    li {
+        display: inline-block;
+        margin: {
+            left: 0;
+            right: 2em;
+        }
+    }
+}
+
+.nav ul {
+    @include horizontal-list();
+}
+
+.header {
+    @include center();
+}
+
+.footer {
+    @include center();
+}
+
+// Mixin con parámetros (incluye parametros por defecto (opcional))
+@mixin crear-grid($rows, $cols, $gap:10px) {
+    display: grid;
+    grid-template-rows: repeat($rows, 1fr);
+    grid-template-columns: repeat($columns, 1fr);
+    gap: $gap;
+}
+
+.header-2 {
+    @include crear-grid(6, 5, 20px);
+}
+
+.header-3 {
+    // Llamada a crear grid usando $gap con valor x defecto
+    @include crear-grid(6, 5);
+}
+
+// shorthand para background con parametros
+@mixin addImage($img, $repeat, $size) {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    background: {
+        image: url($img);
+        repeat: $repeat;
+        size: $size;
+    }
+}
+
+// Ejemplo de uso del mixin addImage (shorthand)
+.jumbotron {
+    @include addImage('assets/img/bosque.jpeg', no-repeat, cover);
+}

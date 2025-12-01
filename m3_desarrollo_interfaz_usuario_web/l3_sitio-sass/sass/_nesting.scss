@@ -1,0 +1,35 @@
+// Nesting: Anidamiento de selectores en SASS
+.card {
+    color: teal;
+    // Concepto de anidamiento de selectores (nesting)
+    // Escribir codigo de manera anidada
+    a {
+        color: black;
+        text-decoration: none;
+
+        // Ejemplo de pseudo-clase anidada
+        // hover es una accion que ocurre sobre un elemento
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    // Usando metodologia BEM con nesting
+    // & representa al selector padre (.card)
+    &__title{
+        text-align: center;
+        // Seria .card__title--primary pero usando & para representar al padre
+        &--primary {
+            color: blue;
+        }
+        &--secondary {
+            color: gray;
+        }
+    }
+}
+
+// Forma convensional de anidar selectores
+/*
+.card a {
+
+}
+*/

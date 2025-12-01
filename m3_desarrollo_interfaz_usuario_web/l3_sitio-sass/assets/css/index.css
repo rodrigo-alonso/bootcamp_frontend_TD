@@ -1,0 +1,20 @@
+@charset "UTF-8";
+/*
+Comentarios de más de una línea
+que si aparecerán en el css
+*/
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary: rgb(11, 11, 199);
+}
+
+body {
+  font-family: "Verdana";
+  color: var(rgb(11, 11, 199));
+}
+
+/*# sourceMappingURL=index.css.map */

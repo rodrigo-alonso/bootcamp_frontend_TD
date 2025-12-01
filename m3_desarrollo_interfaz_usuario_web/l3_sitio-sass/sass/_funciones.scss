@@ -1,0 +1,19 @@
+// modulos preconstruidos (built-in modules)
+@use 'sass:math';
+
+// Variable para conversion de px a em
+$em: 16px;
+
+@function pixel-to-em($pixel) {
+    // Usar math.div para dividir valores con unidades
+    $clean_value: math.div($pixel, $em); // Divide la variable y elimina la unidad px 
+    @return $clean_value * 1em; // Retorna el valor en em  
+}
+
+.container {
+    font-size: pixel-to-em(400px);
+}
+
+.title {
+    font-size: pixel-to-em(30px); // Se tiene que llamar con unidad de medida 'px'
+}
