@@ -1,0 +1,16 @@
+// Creacion de variables de colores
+// Las variables siempre empiezan con $
+$primary: rgb(11, 11, 199);
+$secondary: rgb(141, 138, 138);
+$success: rgb(27, 214, 27);
+$warning: rgb(228, 228, 17);
+$danger: rgb(228, 14, 14);
+$dark: #161616;
+$light: #e0dada;
+
+:root{
+    --primary: #{$primary};
+}
+
+$font-family: 'Verdana';
+$font-style: 'bold';
