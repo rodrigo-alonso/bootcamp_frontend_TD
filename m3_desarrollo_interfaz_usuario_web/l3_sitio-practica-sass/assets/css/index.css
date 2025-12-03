@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  height: 100vh;
+}
+
+.producto {
+  display: flex;
+  height: 100%;
+  font-family: "Open Sans", sans-serif;
+}
+.producto__img {
+  width: 600px;
+}
+.producto__imagen--center {
+  background: rgba(235, 128, 128, 0.9333333333);
+  flex-basis: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.producto__contenido {
+  padding: 2.5em;
+  flex: 1;
+}
+.producto__title {
+  font-family: "Science Gothic", sans-serif;
+  font-size: 3em;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+.producto__subtitle {
+  font-size: 1em;
+  color: #1e283f;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+.producto__rating {
+  display: flex;
+  margin-top: 1.25em;
+}
+.producto__info {
+  margin-top: 2em;
+}
+.producto__info--row {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-bottom: 0.0625em solid #02333a;
+}
+
+.rating {
+  color: gray;
+  font-family: "Open Sans", sans-serif;
+}
+.rating__star {
+  display: inline;
+  margin-right: 0.0625em;
+}
+.rating__star--filled {
+  color: yellowgreen;
+}
+.rating__count {
+  margin-left: 0.625em;
+  font-weight: bold;
+}
+.rating__add {
+  color: gray;
+  text-decoration: none;
+  margin-left: 0.625em;
+}
+.rating__add:hover {
+  color: #02333a;
+}
+
+/*# sourceMappingURL=index.css.map */

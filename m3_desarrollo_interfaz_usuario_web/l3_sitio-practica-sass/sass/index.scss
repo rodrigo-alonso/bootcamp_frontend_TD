@@ -1,0 +1,96 @@
+@use "base";
+@use "variables";
+@use "utilities";
+
+// Mixin para aplicar padding y font-size personalizados
+@mixin custom_padding {
+    padding: utilities.pixel-to-em(50px);
+    font-size: utilities.pixel-to-em(32px);
+}
+
+.container {
+    height: 100vh; // 100% of the viewport height (vh)
+}
+
+.producto {
+    display: flex;
+    height: 100%;
+    font-family: "Open Sans", sans-serif;
+
+    &__img {
+        width: 600px;
+    }
+
+    &__imagen--center {
+        background: variables.$color-ligth;
+        flex-basis: 600px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__contenido {
+        padding: utilities.pixel-to-em(40px);
+        flex: 1;
+    }
+
+    &__title {
+        //@include custom_padding;
+        font-family: "Science Gothic", sans-serif;
+        font-size: utilities.pixel-to-em(48px);
+        font-weight: normal;
+        text-transform: uppercase;
+    }
+
+    &__subtitle {
+        font-size: utilities.pixel-to-em(16px);
+        color: variables.$color-secondary;
+        font-weight: normal;
+        text-transform: uppercase;
+    }
+
+    &__rating {
+        display: flex;
+        margin-top: utilities.pixel-to-em(20px);
+    }
+
+    &__info {
+        margin-top: utilities.pixel-to-em(32px);
+
+        &--row {
+            padding-top: utilities.pixel-to-em(8px);
+            padding-bottom: utilities.pixel-to-em(8px);
+            border-bottom: utilities.pixel-to-em(1px) solid variables.$color-primary;
+        }
+    }
+}
+
+.rating {
+    color: gray;
+    font-family: "Open Sans", sans-serif;
+
+    &__star {
+        display: inline;
+        margin-right: utilities.pixel-to-em(1px);
+
+    }
+
+    &__star--filled {
+        color: yellowgreen;
+    }
+
+    &__count {
+        margin-left: utilities.pixel-to-em(10px);
+        font-weight: bold;
+    }
+
+    &__add {
+        color: gray;
+        text-decoration: none;
+        margin-left: utilities.pixel-to-em(10px);
+        // Llamada a funcion interna de <a> hover
+        &:hover {
+            color: variables.$color-primary;
+        }
+    }
+}

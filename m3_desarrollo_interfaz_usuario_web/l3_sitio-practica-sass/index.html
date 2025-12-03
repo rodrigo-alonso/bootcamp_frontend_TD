@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&family=Science+Gothic:slnt,wdth,wght@-10..0,50..200,100..900&display=swap"
+        rel="stylesheet">
+    <!-- ./assets/{...} Llama al directorio raiz y se arma el path | 
+     ../l3_sitio-practica-sass/assets/{...} busca un directorio arriba del directorio raiz del proyecto 
+     ../../m3_desarrollo_interfaz_usuario_web/l3_sitio-practica-sass/assets/{...} busca dos directorios arriba del directorio raiz del proyecto -->
+    <link rel="stylesheet" href="./assets/css/index.css">
+    <title>SASS & BEM</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="producto">
+            <div class="producto__img--center">
+                <img class="producto__img" src="./assets/img/playstation_5_v2.png" alt="playstation_5">
+            </div>
+
+            <div class="producto__contenido">
+                <h3 class="producto__subtitle">Playstation</h3>
+                <h2 class="producto__title">PlayStation 5</h2>
+                <h3 class="producto__subtitle">SKU: 4186231</h3>
+
+                <div class="producto__rating rating">
+                    <div class="rating__stars">
+                        <i class="rating__star rating__star--filled fa fa-star"></i>
+                        <i class="rating__star rating__star--filled fa fa-star"></i>
+                        <i class="rating__star rating__star--filled fa fa-star"></i>
+                        <i class="rating__star rating__star--filled fa fa-star"></i>
+                        <i class="rating__star fa fa-star"></i>
+                    </div>
+                    <span class="rating__count">153 reviews |</span>                           
+                    <a class="rating__add" href="#">Escribe una reseña</a>
+                </div>
+
+                <div class="producto__info">
+                    <div class="producto__info--row">
+                        <span class="producto__info--label">Color:</span>
+                        <span class="producto__info--row">White</span>
+                    </div>
+                    <div class="producto__info--row">
+                        <span class="producto__info--label">Stock:</span>
+                        <span class="producto__info--row">25 unidades</span>
+                    </div>
+                </div>
+
+                <div class="producto__precio precio">
+                    <div class="precio__actual">499.99 USD</div>
+                    <div class="precio__info">
+                        <span class="precio__original">600 USD</span>
+                        <span class="precio__descuento">20% descuento</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
