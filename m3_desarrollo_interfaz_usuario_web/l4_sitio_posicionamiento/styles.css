@@ -1,0 +1,104 @@
+.container-static, 
+.container-relative, 
+.container-absolute, 
+.container-fixed,
+.container-sticky {
+    background-color: yellowgreen;
+    display: inline-block; /*Posicionamiento block (fijo)*/
+    vertical-align: top;
+    margin: 10px;
+}
+
+.box-static-1, .box-static-2, .box-static-3, 
+.box-relative-1, .box-relative-2, .box-relative-3, 
+.box-absolute-1, .box-absolute-2, .box-absolute-3,
+.box-fixed-1, .box-fixed-2, .box-fixed-3, 
+.box-sticky-1, .box-sticky-2, .box-sticky-3 {
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+    display: inline-block;
+}
+
+/*Static Positioning (opcion por defecto)*/
+.box-static-1 {
+    background-color: green;
+}
+
+.box-static-2 {
+    background-color: aqua;
+}
+
+.box-static-3 {
+    background-color: red;
+}
+
+
+/*Relative Positioning*/
+.box-relative-1 {
+    background-color: green;
+    position: relative;
+    bottom: 10px;
+}
+
+/* Elemento relativo puedo posicionarse sobre otro */
+.box-relative-2 {
+    background-color: aqua;
+    position: relative; 
+    top: 50px;
+    left: -50px;
+}
+
+.box-relative-3 {
+    background-color: red;
+}
+
+/*Absolute Positioning */
+.box-absolute-1 {
+    background-color: green;
+}
+
+.box-absolute-2 {
+    background-color: aqua;
+    position: absolute;
+    top: 50px;
+    left: 120px;
+}
+
+.box-absolute-3 {
+    background-color: red;
+}
+
+/*Fixed Positioning */
+.box-fixed-1 {
+    background-color: green;
+}
+
+/* El elemento se posiciona  */ 
+.box-fixed-2 {
+    background-color: rgb(0, 47, 255);
+    position: fixed;
+    top: 50px;
+    left: 50px;
+}
+
+.box-fixed-3 {
+    background-color: red;
+}
+
+/*Sticky Positioning */
+/* El elemento se mantiene en la posición 
+definida mientras se hace scroll */
+.box-sticky-1 {
+    background-color: green;
+}
+
+.box-sticky-2 {
+    background-color: aqua;
+}
+
+.box-sticky-3 {
+    background-color: red;
+    position: sticky;
+    top: 0;
+}

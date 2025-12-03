@@ -1,0 +1,42 @@
+/*inline: Elemento en línea pero no permite definir ancho y alto */
+/*inline-block: Elemento en línea que se comporta como un bloque pero permite definir ancho y alto */
+.parrafo-inline {
+    display: inline-block;
+    color: red;
+    padding: 5px;
+    background-color: yellowgreen;
+}
+
+.li{
+    display: inline;
+}
+
+.img {
+    display: block;
+    margin: 10px;
+    border-radius: 100%;
+}
+
+.nav-bar {
+    list-style-type: none;
+    
+    li {
+        display: inline-block;
+        margin: 0 20px;
+    }
+}
+
+.parrafo-justificado {
+    width: 350px;
+    margin: 20px;
+    padding: 30px;
+    border: 1px solid black;
+    text-align: justify;
+    display: inline-block;
+    vertical-align: top;
+    border-top-style: dashed;
+    border-bottom-style: dotted;
+    border-bottom-width: 6px;
+    border-bottom-color: brown;
+
+}
