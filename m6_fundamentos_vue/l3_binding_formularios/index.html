@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--CDN Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <!--CDN Bootstrap icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <title>Formulario Reactivo VUE</title>
+</head>
+
+<body>
+    <div id="app" class="container mt-5">
+        <div class="row g4">
+            <!--Formulario ingreso datos-->
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="card-title">Formulario de Registro</h4>
+                    </div>
+                    <div class="card-body">
+                        <form @submit.prevent novalidate>
+                            <!--Rut-->
+                            <div class="mb-3">
+                                <label for="rut" class="form-label">RUT</label>
+                                <!--@input (oninput): feedback inmediato, @blur (onblur): Validacion cuando pierde foco-->
+                                <input v-model="form.rut" @input="formatearRut" @blur="validarRut" :class="estadoRut" class="form-control"
+                                    id="rut" name="rut" placeholder="Ingrese su rut en formato 11111111-1">
+                                <div class="invalid-feedback">Rut invalido</div>
+                            </div>
+                            <!--Nombre-->
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre</label>
+                                <input type="text" name="nombre", id="nombre" class="form-control">
+                            </div>
+                            <!--Email-->
+                            <div class="mb-3"></div>
+                            <!--Password-->
+                            <div class="mb-3"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--Vista previa datos ingresados-->
+            <div class="col-md-6">
+                <div class="card-shadow">
+                    <div class="card-header bg-secondary text-white">
+                        <h4 class="card-title">Datos en tiempo real (Reactividad de VUE)</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>{{ form.rut }}</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    <!--VUE CDN-->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <!--App JS-->
+    <script src="app.js"></script>
+</body>
+
+</html>
