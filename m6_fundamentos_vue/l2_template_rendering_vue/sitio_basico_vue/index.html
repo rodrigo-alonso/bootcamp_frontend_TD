@@ -23,7 +23,7 @@
             </div>
             <div class="card-body text-center">
                 <div v-if="!doctor">
-                    <input type="text" name="doctor" id="doctor" v-model="doctorInput"
+                    <input v-model="doctorInput" type="text" name="doctor" id="doctor"
                         class="form-control mb-3 text-center" placeholder="Ingresa el nombre del doctor">
                     <button class="btn btn-success w-100" @click="guardarDoctor">Guardar</button>
                 </div>
