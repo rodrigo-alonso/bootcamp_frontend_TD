@@ -29,32 +29,38 @@
                             <div class="mb-3">
                                 <label for="rut" class="form-label">RUT</label>
                                 <!--@input (oninput): feedback inmediato, @blur (onblur): Validacion cuando pierde foco-->
-                                <input v-model="form.rut" @input="formatearRut" @blur="validarRut" :class="estadoRut" class="form-control"
-                                    id="rut" name="rut" placeholder="Ingrese su rut en formato 11111111-1">
+                                <input v-model="form.rut" @input="formatearRut" @blur="validarRut"
+                                    :class="estado('rut')" type="text" class="form-control" id="rut" name="rut"
+                                    placeholder="12.345.678-9" maxlength="12">
                                 <div class="invalid-feedback">Rut invalido</div>
                             </div>
                             <!--Nombre-->
                             <div class="mb-3">
                                 <label for="nombre" class="form-label">Nombre</label>
-                                <input type="text" name="nombre", id="nombre" class="form-control">
+                                <input type="text" name="nombre" id="nombre" class="form-control"
+                                    placeholder="Ingrese su nombre">
                             </div>
                             <!--Email-->
-                            <div class="mb-3"></div>
+                            <div class="mb-3">
+
+                            </div>
                             <!--Password-->
-                            <div class="mb-3"></div>
+                            <div class="mb-3">
+
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
             <!--Vista previa datos ingresados-->
             <div class="col-md-6">
-                <div class="card-shadow">
+                <div class="card shadow">
                     <div class="card-header bg-secondary text-white">
                         <h4 class="card-title">Datos en tiempo real (Reactividad de VUE)</h4>
                     </div>
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><strong>{{ form.rut }}</strong></li>
+                            <li class="list-group-item"><strong>RUT:</strong>{{ form.rut }}</li>
                         </ul>
                     </div>
                 </div>

@@ -1,21 +1,11 @@
 // Composition API: Binding de formularios 
 const { createApp, ref, reactive } = Vue;
 
-// createApp({
-//     data() {
-//         return {
-//             form: {  
-//         };
-//     },
-// }).mount('#app');
-
 createApp({
     setup() {
+        const errores = reactive({}); // Objeto reactivo para manejar errores de validación
 
-        // const errores = reactive({});
-        const errores = reactive({});
-
-        const form = reactive({
+        const form = reactive({ // Objeto reactivo para el formulario
             rut: ''
         });
 
@@ -78,6 +68,7 @@ createApp({
         return {
             form,
             errores,
+            estado,
             validarRut,
             formatearRut
         };
