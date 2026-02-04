@@ -1,13 +1,86 @@
-// Composition API: Binding de formularios 
-const { createApp, ref, reactive } = Vue;
+// Option API de Vue (antiguo)
+/* 
+const app = Vue.createApp({}).mount('#app');
+*/
 
+// Composition API: Nueva forma de trabajar con Vue 3 
+const { createApp, ref, reactive, watch, computed } = Vue;
+/* Parametros importados de Vue:
+- createApp: crear la aplicación Vue
+- ref: crear variables reactivas simples
+- reactive: crear objetos reactivos
+- watch: observar cambios en variables reactivas
+- computed: propiedades computadas 
+*/
 createApp({
     setup() {
         const errores = reactive({}); // Objeto reactivo para manejar errores de validación
 
         const form = reactive({ // Objeto reactivo para el formulario
-            rut: ''
+            rut: '',
+            nombre: '',
+            email: '',
+            password: '',
+            confirmPassword: ''
         });
+
+        const mostrarPassword = ref(false); // Ref para manejar la visibilidad del password
+
+        const mostrarConfirmPassword = ref(false);
+
+        const fuerzaPassword = reactive({ // Objeto reactivo para la fuerza del password
+            puntos: 0,
+            porcentaje: 0,
+            texto: '',
+            clase: 'bg-danger',
+            textoClase: 'text-danger'
+        });
+
+        const checkPassword = reactive({ // Objeto reactivo para los checks del password
+            largo: false,
+            mayuscula: false,
+            minuscula: false,
+            numero: false,
+            especiales: false
+        });
+
+        const evaluarPassword = () => {
+            const p = form.password; // Obtener el password del formulario
+
+            checkPassword.largo = p.length >= 8 && p.length <= 16; // Verificar largo entre 8-16 caracteres
+            checkPassword.mayuscula = /[A-Z]/.test(p); // Verificar al menos una mayúscula
+            checkPassword.minuscula = /[a-z]/.test(p); // Verificar al menos una minúscula
+            checkPassword.numero = /[0-9]/.test(p); // Verificar al menos un número
+            checkPassword.especiales = /[!@#$%^&*(),.?":{}|<>]/.test(p); // Verificar al menos un carácter especial
+
+            let puntos = 0;
+            if (checkPassword.largo) puntos++;
+            if (checkPassword.mayuscula) puntos++;
+            if (checkPassword.minuscula) points++;
+            if (checkPassword.numero) puntos++;
+            if (checkPassword.especiales) puntos++;
+
+            const textos = ['Muy débil', 'Débil', 'Aceptable', 'Fuerte', 'Muy fuerte'];
+            const clases = ['bg-danger', 'bg-warning', 'bg-info', 'bg-primary', 'bg-success'];
+            const texto = ['text-danger', 'text-warning', 'text-info', 'text-primary', 'text-success'];
+
+            fuerzaPassword.puntos = puntos;
+            fuerzaPassword.porcentaje = (puntos / 5) * 100;
+            fuerzaPassword.texto = texto[puntos - 1];
+            fuerzaPassword.clase = clases[puntos - 1];
+            fuerzaPassword.textoClase = texto[puntos - 1];
+        };
+
+        // Watchers para resetear confirmPassword si password cambia
+        watch(
+            () => form.password,
+            (nuevo, anterior) => {
+                if (form.confirmPassword && nuevo != anterior) {
+                    form.confirmPassword = ''; // Resetear confirmPassword 
+                    errores.confirmPassword = undefined;
+                }
+            }
+        );
 
         // Metodos para manejar el RUT
         const formatearRut = () => {
@@ -58,6 +131,16 @@ createApp({
             errores.rut = dv !== dvFinal;
         };
 
+        const validarCampo = (campo) => {
+            if (campo === 'nombre') errores.nombre = form.nombre.length < 3; // Ejemplo: nombre debe tener al menos 3 caracteres
+            if (campo === 'email') {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                errores.email = !emailRegex.test(form.email); // Validar formato de email
+            }
+            if (campo === 'password') errores.password = !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(form.password); // Ejemplo: password mínimo 8 caracteres, al menos una letra y un número
+            if (campo === 'confirmPassword') errores.confirmPassword = !form.confirmPassword || form.confirmPassword !== form.password;
+        };
+
         const estado = (campo) => {
             if (errores[campo] === true) return 'is-invalid'; // is-invalid es una clase de Bootstrap que marca el input en rojo
             if (errores[campo] === false) return 'is-valid'; // is-valid es una clase de Bootstrap que marca el input en verde con ticket
@@ -65,12 +148,18 @@ createApp({
         };
 
         // Activar todo respecto al template
-        return {
+        return { // Retornar todo lo que se usará en el template
             form,
             errores,
+            mostrarPassword,
+            mostrarConfirmPassword,
+            fuerzaPassword,
+            checkPassword,
+            evaluarPassword,
             estado,
             validarRut,
-            formatearRut
+            formatearRut,
+            validarCampo
         };
     },
 }).mount('#app');

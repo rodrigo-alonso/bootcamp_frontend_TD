@@ -34,20 +34,91 @@
                                     placeholder="12.345.678-9" maxlength="12">
                                 <div class="invalid-feedback">Rut invalido</div>
                             </div>
+
                             <!--Nombre-->
                             <div class="mb-3">
-                                <label for="nombre" class="form-label">Nombre</label>
-                                <input type="text" name="nombre" id="nombre" class="form-control"
-                                    placeholder="Ingrese su nombre">
+                                <label for="nombre" class="form-label fw-bold">Nombre</label>
+                                <input v-model="form.nombre" @blur="validarCampo('nombre')" :class="estado('nombre')"
+                                    type="text" name="nombre" id="nombre" placeholder="Ingrese su nombre">
+                                <div class="invalid-feedback">Minimo 3 caracteres</div>
                             </div>
+
                             <!--Email-->
                             <div class="mb-3">
-
+                                <label for="email" class="form-label fw-bold">Email</label>
+                                <input v-model="form.email" @blur="validarCampo('email')" :class="estado('email')"
+                                    type="email" name="email" id="email" placeholder="ejemplo@mail.com">
+                                <div class="invalid-feedback">Email invalido</div>
                             </div>
+
                             <!--Password-->
                             <div class="mb-3">
-
+                                <label for="password" class="form-label fw-bold">Password</label>
+                                <div class="input-group">
+                                    <input v-model="form.password" @blur="validarCampo('password')"
+                                        @input="evaluarPassword" :class="estado('password')"
+                                        :type="mostrarPassword ? 'text' : 'password'" name="password" id="password"
+                                        placeholder="Ingrese su password">
+                                    <span @click="mostrarPassword = !mostrarPassword" class="input-group-text"
+                                        style="cursor:pointer">
+                                        <i :class="mostrarPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+                                    </span>
+                                </div>
+                                <div class="progress mt-2">
+                                    <div class="progress-bar" :class="fuerzaPassword.clase"
+                                        :style="{width: fuerzaPassword.porcentaje + '%' }">
+                                    </div>
+                                </div>
+                                <small class="fw-bold" :class="fuerzaPassword.textoClase">
+                                    {{ fuerzaPassword.texto }}
+                                </small>
+                                <ul class="list-unstyled mt-2">
+                                    <li :class="checkPassword.largo ? 'text-success' : 'text-danger'">
+                                        <i :class="checkPassword.largo ? 'bi bi-check-circle' : 'bi bi-x-circle'"></i>
+                                        8 - 16 caracteres
+                                    </li>
+                                    <li :class="checkPassword.mayuscula ? 'text-success' : 'text-danger'">
+                                        <i
+                                            :class="checkPassword.mayuscula ? 'bi bi-check-circle' : 'bi bi-x-circle'"></i>
+                                        Al menos una mayúscula
+                                    </li>
+                                    <li :class="checkPassword.minuscula ? 'text-success' : 'text-danger'">
+                                        <i
+                                            :class="checkPassword.minuscula ? 'bi bi-check-circle' : 'bi bi-x-circle'"></i>
+                                        Al menos una minúscula
+                                    </li>
+                                    <li :class="checkPassword.numero ? 'text-success' : 'text-danger'">
+                                        <i :class="checkPassword.numero ? 'bi bi-check-circle' : 'bi bi-x-circle'"></i>
+                                        Al menos un número
+                                    </li>
+                                    <li :class="checkPassword.simbolo ? 'text-success' : 'text-danger'">
+                                        <i :class="checkPassword.simbolo ? 'bi bi-check-circle' : 'bi bi-x-circle'"></i>
+                                        Al menos un símbolo
+                                    </li>
+                                </ul>
                             </div>
+
+                            <!--Confirmar Password-->
+                            <div class="mb-3">
+                                <label for="confirm_password" class="form-label fw-bold">Confirmar Password</label>
+                                <div class="input-group">
+                                    <input v-model="form.confirmPassword" @blur="validarCampo('confirmPassword')"
+                                        @input="evaluarPassword" :class="estado('password')"
+                                        @input="validarCampo('confirmPassword')"
+                                        :type="mostrarConfirmPassword ? 'text' : 'password'" name="password" id="password"
+                                        placeholder="Ingrese su password" name="password">
+
+                                    <span @click="mostrarConfirmPassword = !mostrarConfirmPassword" class="input-group-text"
+                                        style="cursor:pointer">
+                                        <i :class="mostrarConfirmPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+                                    </span>
+                                </div>
+                                <div v-if="errores.confirmPassword">
+                                    <small v-if="errores.confirmPassword" class="text-danger">Las contraseñas no coinciden</small>
+                                    <small v-else class="text-success">Las contraseñas coinciden</small>
+                                </div>
+                            </div>
+
                         </form>
                     </div>
                 </div>
@@ -61,6 +132,9 @@
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"><strong>RUT:</strong>{{ form.rut }}</li>
+                            <li class="list-group-item"><strong>Nombre:</strong>{{ form.nombre }}</li>
+                            <li class="list-group-item"><strong>Email:</strong>{{ form.email }}</li>
+                            <li class="list-group-item"><strong>Password:</strong>{{ form.password }}</li>
                         </ul>
                     </div>
                 </div>
