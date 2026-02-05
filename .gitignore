@@ -24,3 +24,14 @@ TestResults.xml
 node_modules/
 # JavaScript map files
 *.css.map
+# Video files
+*.mp4
+# Log files
+*.log
+# OS generated files
+.DS_Store
+Thumbs.db
+# Temporary files
+*.tmp
+# Environment files
+.env
