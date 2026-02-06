@@ -21,7 +21,14 @@ createApp({
             nombre: '',
             email: '',
             password: '',
-            confirmPassword: ''
+            confirmPassword: '',
+            edad: null,
+            fechaNacimiento: '',
+            pais: '',
+            genero: '',
+            hobbies: [],
+            aceptaTerminos: false,
+            permisoEnviar: false
         });
 
         const mostrarPassword = ref(false); // Ref para manejar la visibilidad del password
@@ -51,7 +58,7 @@ createApp({
             checkPassword.mayuscula = /[A-Z]/.test(p); // Verificar al menos una mayúscula
             checkPassword.minuscula = /[a-z]/.test(p); // Verificar al menos una minúscula
             checkPassword.numero = /[0-9]/.test(p); // Verificar al menos un número
-            checkPassword.especiales = /[!@#$%^&*(),.?":{}|<>]/.test(p); // Verificar al menos un carácter especial
+            checkPassword.especiales = /[!@#$%^&*(),.?":{}|<>_-]/.test(p); // Verificar al menos un carácter especial
 
             let puntos = 0;
             if (checkPassword.largo) puntos++;
@@ -137,8 +144,12 @@ createApp({
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 errores.email = !emailRegex.test(form.email); // Validar formato de email
             }
-            if (campo === 'password') errores.password = !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(form.password); // Ejemplo: password mínimo 8 caracteres, al menos una letra y un número
-            if (campo === 'confirmPassword') errores.confirmPassword = !form.confirmPassword || form.confirmPassword !== form.password;
+            if (campo === 'password') errores.password = !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>_-])[A-Za-z\d@$!%*?&]{8,16}$/.test(form.password); // 8-16 caracteres, mayuscula, minuscula, simbolo, numero
+            if (campo === 'edad') errores.edad = form.edad < 18 || form.edad > 99; // Edad entre 18 y 99
+            if (campo === 'fechaNacimiento') errores.fechaNacimiento = !form.fechaNacimiento; // Fecha de nacimiento obligatoria
+            if (campo === 'pais') errores.pais = !form.pais; // País obligatorio
+            if (campo === 'genero') errores.genero = !form.genero; // Género obligatorio
+            if (campo === 'aceptaTerminos') errores.aceptaTerminos = !form.aceptaTerminos; // Aceptar términos obligatorio
         };
 
         const estado = (campo) => {
@@ -147,6 +158,11 @@ createApp({
             return '';
         };
 
+        // hayErrores no se envia a formulario, solo se usa en .js
+        const hayErrores = computed(() => Object.values(errores).some(v => v === true)); // Verifica si hay errores en el formulario (retorna true/false)
+
+        const permisoEnviar = computed(() => form.aceptaTerminos && !hayErrores.value);
+
         // Activar todo respecto al template
         return { // Retornar todo lo que se usará en el template
             form,
@@ -154,12 +170,13 @@ createApp({
             mostrarPassword,
             mostrarConfirmPassword,
             fuerzaPassword,
-            checkPassword,
+            checkPassword, // No es necesario retornarlo pq no es usado por la pagina
             evaluarPassword,
             estado,
             validarRut,
             formatearRut,
-            validarCampo
+            validarCampo,
+            permisoEnviar
         };
     },
 }).mount('#app');
