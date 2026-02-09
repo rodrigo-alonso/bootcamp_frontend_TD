@@ -33,7 +33,7 @@ createApp({
 
         const mostrarPassword = ref(false); // Ref para manejar la visibilidad del password
 
-        const mostrarConfirmPassword = ref(false);
+        const mostrarConfirmPassword = ref(false); // Ref para manejar la visibilidad del confirm password
 
         const fuerzaPassword = reactive({ // Objeto reactivo para la fuerza del password
             puntos: 0,
@@ -57,25 +57,24 @@ createApp({
             checkPassword.largo = p.length >= 8 && p.length <= 16; // Verificar largo entre 8-16 caracteres
             checkPassword.mayuscula = /[A-Z]/.test(p); // Verificar al menos una mayúscula
             checkPassword.minuscula = /[a-z]/.test(p); // Verificar al menos una minúscula
-            checkPassword.numero = /[0-9]/.test(p); // Verificar al menos un número
-            checkPassword.especiales = /[!@#$%^&*(),.?":{}|<>_-]/.test(p); // Verificar al menos un carácter especial
+            checkPassword.numero = /\d/.test(p); // Verificar al menos un número
+            checkPassword.especiales = /[@$!%*?&#._-]/.test(p); // Verificar al menos un carácter especial
 
             let puntos = 0;
             if (checkPassword.largo) puntos++;
             if (checkPassword.mayuscula) puntos++;
-            if (checkPassword.minuscula) points++;
+            if (checkPassword.minuscula) puntos++;
             if (checkPassword.numero) puntos++;
             if (checkPassword.especiales) puntos++;
 
             const textos = ['Muy débil', 'Débil', 'Aceptable', 'Fuerte', 'Muy fuerte'];
-            const clases = ['bg-danger', 'bg-warning', 'bg-info', 'bg-primary', 'bg-success'];
-            const texto = ['text-danger', 'text-warning', 'text-info', 'text-primary', 'text-success'];
+            const colores = ['bg-danger', 'bg-warning', 'bg-info', 'bg-primary', 'bg-success'];
 
             fuerzaPassword.puntos = puntos;
             fuerzaPassword.porcentaje = (puntos / 5) * 100;
-            fuerzaPassword.texto = texto[puntos - 1];
-            fuerzaPassword.clase = clases[puntos - 1];
-            fuerzaPassword.textoClase = texto[puntos - 1];
+            fuerzaPassword.texto = textos[puntos - 1];
+            fuerzaPassword.clase = colores[puntos - 1];
+            fuerzaPassword.textoClase = colores[puntos - 1].replace('bg', 'text');
         };
 
         // Watchers para resetear confirmPassword si password cambia
@@ -138,20 +137,30 @@ createApp({
             errores.rut = dv !== dvFinal;
         };
 
+        // Función para validar campos individuales, se llama al hacer blur
         const validarCampo = (campo) => {
-            if (campo === 'nombre') errores.nombre = form.nombre.length < 3; // Ejemplo: nombre debe tener al menos 3 caracteres
-            if (campo === 'email') {
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                errores.email = !emailRegex.test(form.email); // Validar formato de email
-            }
-            if (campo === 'password') errores.password = !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>_-])[A-Za-z\d@$!%*?&]{8,16}$/.test(form.password); // 8-16 caracteres, mayuscula, minuscula, simbolo, numero
-            if (campo === 'edad') errores.edad = form.edad < 18 || form.edad > 99; // Edad entre 18 y 99
-            if (campo === 'fechaNacimiento') errores.fechaNacimiento = !form.fechaNacimiento; // Fecha de nacimiento obligatoria
-            if (campo === 'pais') errores.pais = !form.pais; // País obligatorio
-            if (campo === 'genero') errores.genero = !form.genero; // Género obligatorio
-            if (campo === 'aceptaTerminos') errores.aceptaTerminos = !form.aceptaTerminos; // Aceptar términos obligatorio
+            // Validaciones específicas por campo, si hay error se crea la propiedad en el objeto errores y se asigna true, sino false (para mostrar feedback en el template)
+            if (campo === 'nombre')
+                errores.nombre = form.nombre.length < 3; // Nombre debe tener al menos 3 caracteres
+            if (campo === 'email')
+                errores.email = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email); // Validar formato de email text@text.text
+            if (campo === 'password')
+                errores.password = !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#._-])[A-Za-z\d@$!%*?&#._-]{8,16}$/.test(form.password); // Validar password con regex (8-16 caracteres, al menos una mayúscula, una minúscula, un número y un carácter especial)
+            if (campo === 'confirmPassword') 
+                errores.confirmPassword = !form.confirmPassword || form.confirmPassword !== form.password; // ConfirmPassword debe coincidir con password y no estar vacío
+            if (campo === 'edad')
+                errores.edad = form.edad < 18 || form.edad > 99; // Edad entre 18 y 99
+            if (campo === 'fechaNacimiento')
+                errores.fechaNacimiento = !form.fechaNacimiento; // Fecha de nacimiento obligatoria
+            if (campo === 'pais')
+                errores.pais = !form.pais; // País obligatorio
+            if (campo === 'genero')
+                errores.genero = !form.genero; // Género obligatorio
+            if (campo === 'aceptaTerminos')
+                errores.aceptaTerminos = !form.aceptaTerminos; // Aceptar términos obligatorio
         };
 
+        // Función para determinar la clase de validación de un campo, se usa en el template para agregar clases de Bootstrap (is-valid o is-invalid)
         const estado = (campo) => {
             if (errores[campo] === true) return 'is-invalid'; // is-invalid es una clase de Bootstrap que marca el input en rojo
             if (errores[campo] === false) return 'is-valid'; // is-valid es una clase de Bootstrap que marca el input en verde con ticket

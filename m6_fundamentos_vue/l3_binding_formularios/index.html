@@ -3,20 +3,26 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
     <!--CDN Bootstrap-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+          crossorigin="anonymous">
 
     <!--CDN Bootstrap icons-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
     <title>Formulario Reactivo VUE</title>
 </head>
 
 <body>
-    <div id="app" class="container my-5">
+    <div id="app"
+         class="container my-5">
         <div class="row g4">
+
             <!--Formulario ingreso datos-->
             <div class="col-md-6 mb-5">
                 <div class="card shadow">
@@ -24,67 +30,100 @@
                         <h4 class="card-title">Formulario de Registro</h4>
                     </div>
                     <div class="card-body">
-                        <form @submit.prevent novalidate>
+                        <form @submit.prevent
+                              novalidate>
+
                             <!--Rut-->
                             <div class="mb-3">
-                                <label for="rut" class="form-label fw-bold">RUT</label>
+                                <label for="rut"
+                                       class="form-label fw-bold">RUT</label>
                                 <!--@input (oninput): feedback inmediato, @blur (onblur): Validacion cuando pierde foco-->
-                                <input v-model="form.rut" @input="formatearRut" @blur="validarRut"
-                                    :class="estado('rut')" type="text" class="form-control" id="rut" name="rut"
-                                    placeholder="12.345.678-9" maxlength="12">
+                                <input v-model="form.rut"
+                                       @input="formatearRut"
+                                       @blur="validarRut"
+                                       :class="estado('rut')"
+                                       type="text"
+                                       id="rut"
+                                       name="rut"
+                                       class="form-control"
+                                       placeholder="12.345.678-9"
+                                       maxlength="12">
                                 <div class="invalid-feedback">Rut invalido</div>
                             </div>
 
                             <!--Nombre-->
                             <div class="mb-3">
-                                <label for="nombre" class="form-label fw-bold">Nombre</label>
-                                <input v-model="form.nombre" @input="" @blur="validarCampo('nombre')" :class="estado('nombre')"
-                                    type="text" name="nombre" id="nombre" placeholder="Ingrese su nombre">
+                                <label for="nombre"
+                                       class="form-label fw-bold">Nombre</label>
+                                <input v-model="form.nombre"
+                                       @input=""
+                                       @blur="validarCampo('nombre')"
+                                       :class="estado('nombre')"
+                                       class="form-control"
+                                       type="text"
+                                       name="nombre"
+                                       id="nombre"
+                                       placeholder="Ingrese su nombre">
                                 <div class="invalid-feedback">Minimo 3 caracteres</div>
                             </div>
 
                             <!--Email-->
                             <div class="mb-3">
-                                <label for="email" class="form-label fw-bold">Email</label>
-                                <input v-model="form.email" @blur="validarCampo('email')" :class="estado('email')"
-                                    type="email" name="email" id="email" placeholder="ejemplo@mail.com">
+                                <label for="email"
+                                       class="form-label fw-bold">Email</label>
+                                <input v-model="form.email"
+                                       @blur="validarCampo('email')"
+                                       :class="estado('email')"
+                                       class="form-control"
+                                       type="email"
+                                       name="email"
+                                       id="email"
+                                       placeholder="ejemplo@mail.com">
                                 <div class="invalid-feedback">Email invalido</div>
                             </div>
 
                             <!--Password-->
                             <div class="mb-3">
-                                <label for="password" class="form-label fw-bold">Password</label>
+                                <label for="password"
+                                       class="form-label fw-bold">Password</label>
                                 <div class="input-group">
-                                    <input v-model="form.password" @blur="validarCampo('password')"
-                                        @input="evaluarPassword" :class="estado('password')"
-                                        :type="!mostrarPassword ? 'text' : 'password'" name="password" id="password"
-                                        placeholder="Ingrese su password">
-                                    <span @click="mostrarPassword = !mostrarPassword" class="input-group-text"
-                                        style="cursor:pointer">
-                                        <i :class="!mostrarPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+                                    <input v-model="form.password"
+                                           @blur="validarCampo('password')"
+                                           @input="evaluarPassword"
+                                           :class="estado('password')"
+                                           :type="mostrarPassword ? 'text' : 'password'"
+                                           name="password"
+                                           id="password"
+                                           class="form-control"
+                                           placeholder="Ingrese su password">
+                                    <span @click="mostrarPassword = !mostrarPassword"
+                                          class="input-group-text"
+                                          style="cursor:pointer">
+                                        <i :class="mostrarPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
                                     </span>
                                 </div>
                                 <div class="progress mt-2">
-                                    <div class="progress-bar" :class="fuerzaPassword.clase"
-                                        :style="{width: fuerzaPassword.porcentaje + '%' }">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                         :class="fuerzaPassword.clase"
+                                         :style="{width: fuerzaPassword.porcentaje + '%' }">
                                     </div>
                                 </div>
-                                <small class="fw-bold" :class="fuerzaPassword.textoClase">
+                                <small class="fw-bold"
+                                       :class="fuerzaPassword.textoClase">
                                     {{ fuerzaPassword.texto }}
                                 </small>
+                                <!--Lista de validaciones password-->
                                 <ul class="list-unstyled mt-2">
                                     <li :class="checkPassword.largo ? 'text-success' : 'text-danger'">
                                         <i :class="checkPassword.largo ? 'bi bi-check-circle' : 'bi bi-x-circle'"></i>
                                         8 - 16 caracteres
                                     </li>
                                     <li :class="checkPassword.mayuscula ? 'text-success' : 'text-danger'">
-                                        <i
-                                            :class="checkPassword.mayuscula ? 'bi bi-check-circle' : 'bi bi-x-circle'"></i>
+                                        <i :class="checkPassword.mayuscula ? 'bi bi-check-circle' : 'bi bi-x-circle'"></i>
                                         Al menos una mayúscula
                                     </li>
                                     <li :class="checkPassword.minuscula ? 'text-success' : 'text-danger'">
-                                        <i
-                                            :class="checkPassword.minuscula ? 'bi bi-check-circle' : 'bi bi-x-circle'"></i>
+                                        <i :class="checkPassword.minuscula ? 'bi bi-check-circle' : 'bi bi-x-circle'"></i>
                                         Al menos una minúscula
                                     </li>
                                     <li :class="checkPassword.numero ? 'text-success' : 'text-danger'">
@@ -100,50 +139,76 @@
 
                             <!--Confirmar Password-->
                             <div class="mb-3">
-                                <label for="confirm_password" class="form-label fw-bold">Confirmar Password</label>
+                                <label for="confirm_password"
+                                       class="form-label fw-bold">Confirmar Password</label>
                                 <div class="input-group">
-                                    <input v-model="form.confirmPassword" @blur="validarCampo('confirmPassword')"
-                                        @input="evaluarPassword" :class="estado('password')"
-                                        @input="validarCampo('confirmPassword')"
-                                        :type="!mostrarConfirmPassword ? 'text' : 'password'" name="password"
-                                        id="password" placeholder="Ingrese su password" name="password">
-
+                                    <input v-model="form.confirmPassword"
+                                           @blur="validarCampo('confirmPassword')"
+                                           :class="estado('confirmPassword')"
+                                           @input="validarCampo('confirmPassword')"
+                                           :type="mostrarConfirmPassword ? 'text' : 'password'"
+                                           class="form-control"
+                                           name="confirm_password"
+                                           id="confirm_password"
+                                           placeholder="Ingrese su password">
+                                    <!--input-group-text Clase de Bootstrap para agrupar el ícono con el input-->
                                     <span @click="mostrarConfirmPassword = !mostrarConfirmPassword"
-                                        class="input-group-text" style="cursor:pointer">
-                                        <i :class="!mostrarConfirmPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+                                          class="input-group-text"
+                                          style="cursor:pointer">
+                                        <!--cursor:pointer -> Cambia el cursor a una "manita" para indicar que es clickeable-->
+                                        <i :class="mostrarConfirmPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
                                     </span>
                                 </div>
-                                <div v-if="errores.confirmPassword">
-                                    <small v-if="errores.confirmPassword" class="text-danger">Las contraseñas no
-                                        coinciden</small>
-                                    <small v-else class="text-success">Las contraseñas coinciden</small>
+                                <div v-if="form.confirmPassword">
+                                    <small v-if="errores.confirmPassword"
+                                           class="text-danger">Las contraseñas no coinciden</small>
+                                    <small v-else
+                                           class="text-success">Las contraseñas coinciden</small>
                                 </div>
                             </div>
 
                             <!--Edad-->
                             <div class="mb-3">
-                                <label for="edad" class="form-label fw-bold">Edad</label>
-                                <input v-model="form.edad" @blur="validarCampo('edad')" :class="estado('edad')"
-                                    type="number" name="edad" id="edad" placeholder="Ingrese su edad">
+                                <label for="edad"
+                                       class="form-label fw-bold">Edad</label>
+                                <input v-model="form.edad"
+                                       @blur="validarCampo('edad')"
+                                       :class="estado('edad')"
+                                       type="number"
+                                       name="edad"
+                                       id="edad"
+                                       class="form-control"
+                                       placeholder="Ingrese su edad">
                                 <div class="invalid-feedback">Edad invalida, debe ingresar una edad entre 18 y 99 años
                                 </div>
                             </div>
 
                             <!--Fecha Nacimiento-->
                             <div class="mb-3">
-                                <label for="fecha_nacimiento" class="form-label fw-bold">Fecha de Nacimiento</label>
-                                <input v-model="form.fechaNacimiento" @blur="validarCampo('fechaNacimiento')"
-                                    :class="estado('fechaNacimiento')" :format="'DD/MM/YYYY'" type="date"
-                                    name="fechaNacimiento" id="fechaNacimiento"
-                                    placeholder="Ingrese su fecha de nacimiento">
+                                <label for="fecha_nacimiento"
+                                       class="form-label fw-bold">Fecha de Nacimiento</label>
+                                <input v-model="form.fechaNacimiento"
+                                       @blur="validarCampo('fechaNacimiento')"
+                                       :class="estado('fechaNacimiento')"
+                                       :format="'DD/MM/YYYY'"
+                                       type="date"
+                                       name="fechaNacimiento"
+                                       id="fechaNacimiento"
+                                       class="form-control"
+                                       placeholder="Ingrese su fecha de nacimiento">
                                 <div class="invalid-feedback">Fecha obligatoria</div>
                             </div>
 
                             <!--Pais-->
                             <div class="mb-3">
-                                <label for="pais" class="form-label fw-bold">País</label>
-                                <select v-model="form.pais" @blur="validarCampo('pais')" :class="estado('pais')"
-                                    :class="estado('pais')" id="pais" name="pais">
+                                <label for="pais"
+                                       class="form-label fw-bold">País</label>
+                                <select v-model="form.pais"
+                                        @blur="validarCampo('pais')"
+                                        :class="estado('pais')"
+                                        id="pais"
+                                        name="pais"
+                                        class="form-control">
                                     <option value="">Seleccionar</option>
                                     <option value="Chile">Chile</option>
                                     <option value="Argentina">Argentina</option>
@@ -157,81 +222,143 @@
 
                             <!--Genero-->
                             <div class="mb-3">
-                                <label for="genero" class="form-label fw-bold">Género</label>
+                                <label for="genero"
+                                       class="form-label fw-bold">Género</label>
                                 <div class="form-check">
-                                    <input v-model="form.genero" value="Masculino" class="form-check-input" type="radio"
-                                        name="genero" id="masculino">
-                                    <label class="form-check-label" for="masculino">Masculino</label>
+                                    <input v-model="form.genero"
+                                           value="Masculino"
+                                           class="form-check-input"
+                                           type="radio"
+                                           name="genero"
+                                           id="masculino">
+                                    <label class="form-check-label"
+                                           for="masculino">Masculino</label>
                                 </div>
                                 <div class="form-check">
-                                    <input v-model="form.genero" value="Femenino" class="form-check-input" type="radio"
-                                        name="genero" id="femenino">
-                                    <label class="form-check-label" for="femenino">Femenino</label>
+                                    <input v-model="form.genero"
+                                           value="Femenino"
+                                           class="form-check-input"
+                                           type="radio"
+                                           name="genero"
+                                           id="femenino">
+                                    <label class="form-check-label"
+                                           for="femenino">Femenino</label>
                                 </div>
                                 <div class="form-check">
-                                    <input v-model="form.genero" value="No responde" class="form-check-input"
-                                        type="radio" name="genero" id="no_responde">
-                                    <label class="form-check-label" for="no_responde">No responde</label>
+                                    <input v-model="form.genero"
+                                           value="No responde"
+                                           class="form-check-input"
+                                           type="radio"
+                                           name="genero"
+                                           id="no_responde">
+                                    <label class="form-check-label"
+                                           for="no_responde">No responde</label>
                                 </div>
                             </div>
 
                             <!--Hobbies-->
                             <div class="mb-3">
-                                <label for="hobbies" class="form-label fw-bold">Hobbies</label>
+                                <label for="hobbies"
+                                       class="form-label fw-bold">Hobbies</label>
                                 <div class="form-check">
-                                    <input v-model="form.hobbies" value="Deportes" class="form-check-input"
-                                        type="checkbox" name="deporte" id="deporte">
-                                    <label class="form-check-label" for="deporte">Deportes</label>
+                                    <input v-model="form.hobbies"
+                                           value="Deportes"
+                                           class="form-check-input"
+                                           type="checkbox"
+                                           name="deporte"
+                                           id="deporte">
+                                    <label class="form-check-label"
+                                           for="deporte">Deportes</label>
                                 </div>
                                 <div class="form-check">
-                                    <input v-model="form.hobbies" value="Musica" class="form-check-input"
-                                        type="checkbox" name="musica" id="musica">
-                                    <label class="form-check-label" for="musica">Música</label>
+                                    <input v-model="form.hobbies"
+                                           value="Musica"
+                                           class="form-check-input"
+                                           type="checkbox"
+                                           name="musica"
+                                           id="musica">
+                                    <label class="form-check-label"
+                                           for="musica">Música</label>
                                 </div>
                                 <div class="form-check">
-                                    <input v-model="form.hobbies" value="Cine" class="form-check-input" type="checkbox"
-                                        name="cine" id="cine">
-                                    <label class="form-check-label" for="cine">Cine</label>
+                                    <input v-model="form.hobbies"
+                                           value="Cine"
+                                           class="form-check-input"
+                                           type="checkbox"
+                                           name="cine"
+                                           id="cine">
+                                    <label class="form-check-label"
+                                           for="cine">Cine</label>
                                 </div>
                                 <div class="form-check">
-                                    <input v-model="form.hobbies" value="Teatro" class="form-check-input"
-                                        type="checkbox" name="teatro" id="teatro">
-                                    <label class="form-check-label" for="teatro">Teatro</label>
+                                    <input v-model="form.hobbies"
+                                           value="Teatro"
+                                           class="form-check-input"
+                                           type="checkbox"
+                                           name="teatro"
+                                           id="teatro">
+                                    <label class="form-check-label"
+                                           for="teatro">Teatro</label>
                                 </div>
                                 <div class="form-check">
-                                    <input v-model="form.hobbies" value="Literatura" class="form-check-input"
-                                        type="checkbox" name="literatura" id="literatura">
-                                    <label class="form-check-label" for="literatura">Literatura</label>
+                                    <input v-model="form.hobbies"
+                                           value="Literatura"
+                                           class="form-check-input"
+                                           type="checkbox"
+                                           name="literatura"
+                                           id="literatura">
+                                    <label class="form-check-label"
+                                           for="literatura">Literatura</label>
                                 </div>
                                 <div class="form-check">
-                                    <input v-model="form.hobbies" value="Series" class="form-check-input"
-                                        type="checkbox" name="series" id="series">
-                                    <label class="form-check-label" for="series">Series</label>
+                                    <input v-model="form.hobbies"
+                                           value="Series"
+                                           class="form-check-input"
+                                           type="checkbox"
+                                           name="series"
+                                           id="series">
+                                    <label class="form-check-label"
+                                           for="series">Series</label>
                                 </div>
                                 <div class="form-check">
-                                    <input v-model="form.hobbies" value="Anime" class="form-check-input" type="checkbox"
-                                        name="anime" id="anime">
-                                    <label class="form-check-label" for="anime">Anime</label>
+                                    <input v-model="form.hobbies"
+                                           value="Anime"
+                                           class="form-check-input"
+                                           type="checkbox"
+                                           name="anime"
+                                           id="anime">
+                                    <label class="form-check-label"
+                                           for="anime">Anime</label>
                                 </div>
                                 <div class="form-check">
-                                    <input v-model="form.hobbies" value="Videojuegos" class="form-check-input"
-                                        type="checkbox" name="videojuegos" id="videojuegos">
-                                    <label class="form-check-label" for="videojuegos">Videojuegos</label>
+                                    <input v-model="form.hobbies"
+                                           value="Videojuegos"
+                                           class="form-check-input"
+                                           type="checkbox"
+                                           name="videojuegos"
+                                           id="videojuegos">
+                                    <label class="form-check-label"
+                                           for="videojuegos">Videojuegos</label>
                                 </div>
                             </div>
 
                             <!--Aceptar terminos-->
                             <div class="mb-3">
                                 <div class="form-check form-switch">
-                                    <input v-model="form.aceptaTerminos" class="form-check-input" type="checkbox"
-                                        role="switch" id="acepta">
-                                    <label class="form-check-label" for="acepta">Acepto los términos y
+                                    <input v-model="form.aceptaTerminos"
+                                           class="form-check-input"
+                                           type="checkbox"
+                                           role="switch"
+                                           id="acepta">
+                                    <label class="form-check-label"
+                                           for="acepta">Acepto los términos y
                                         condiciones</label>
                                 </div>
                             </div>
 
                             <!--Boton de Guardar-->
-                            <button class="btn btn-primary w-100" :disabled="!form.permisoEnviar">Guardar</button>
+                            <button class="btn btn-primary w-100"
+                                    :disabled="!form.permisoEnviar">Guardar</button>
 
                         </form>
                     </div>
@@ -262,17 +389,18 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Bootstrap JS -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
             crossorigin="anonymous"></script>
 
-        <!--VUE CDN-->
-        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!--VUE CDN-->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
-        <!--App JS-->
-        <script src="app.js"></script>
+    <!--App JS-->
+    <script src="app.js"></script>
 </body>
 
 </html>
