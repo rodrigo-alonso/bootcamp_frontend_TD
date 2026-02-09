@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <!--CDN Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+          crossorigin="anonymous">
+
+    <!--CDN Bootstrap icons-->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <title>Manejo de Eventos VUE</title>
+</head>
+
+<body>
+    <div id="app"
+         class="container my-5">
+        <h2 class="mb-3">Analizando eventos en VUE 3</h2>
+
+        <!--Eventos del mouse-->
+        <div class="card mb-3">
+            <div class="card-header">
+                <h4 class="card-title">Eventos del Mouse</h4>
+            </div>
+            <div class="card-body">
+                <button class="btn btn-primary me-2"
+                        @click="registrarEvento('click')">Click</button>
+                <button class="btn btn-secondary me-2"
+                        @dblclick="registrarEvento('dblclick')">Doble Click</button>
+                <!--contextmenu.prevent evita que se despliegue el menu de click derecho sobre el boton-->
+                <button class="btn btn-warning me-2"
+                        @contextmenu.prevent="registrarEvento('contextmenu(click derecho)')">Click Derecho</button>
+                <button class="btn btn-danger me-2"
+                        @mouseover="registrarEvento('mouseover ')">MouseOver</button>
+            </div>
+        </div>
+
+        <!--Eventos de teclado-->
+        <div class="card mb-3">
+            <div class="card-header">
+                <h4 class="card-title">Eventos del teclado e Input</h4>
+            </div>
+            <div class="card-body">
+                <input @focus="registrarEvento('focus')"
+                       @blur="registrarEvento('blur input')"
+                       @keyup="registrarTecla"
+                       @keydown="registrarTecla"
+                       @keydown.enter="registrarTecla"
+                       @input="registrarEventoInput"
+                       type="text"
+                       name="texto"
+                       id="texto"
+                       placeholder="Escribe algo..."
+                       class="form-control">
+            </div>
+        </div>
+
+        <!--Log de los eventos-->
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Registro de eventos</h4>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <li v-for="(evento, index) in eventos"
+                        :key="index"
+                        class="list-group-item">{{evento}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"></script>
+
+    <!--VUE CDN-->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <!--App JS-->
+    <script src="app.js"></script>
+</body>
+
+</html>
