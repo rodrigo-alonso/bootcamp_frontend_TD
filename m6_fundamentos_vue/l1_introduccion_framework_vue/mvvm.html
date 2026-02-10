@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- === VIEW (La Vista) === -->
+    <div id="app">
+        <h1>{{ titulo }}</h1>
+        <input v-model="titulo"
+               @input="actualizarTitulo"
+               type="text">
+    </div>
+    <script>
+        const app = Vue.createApp({
+            // === MODEL (El Modelo) ===
+            // Aquí viven los datos puros.
+            data() {
+                return {
+                    titulo: "Hola Mundo"
+                }
+            },
+
+            // === VIEW MODEL (El Intermediario) ===
+            // Vue gestiona métodos y watchers para unir los dos mundos
+            methods: {
+                actualizarTitulo(evento) {
+                    // Cuando la Vista detecta un cambio, actualizamos el Modelo
+                    this.titulo = evento.target.value;
+                }
+            }
+        });
+
+        app.mount('#app');
+
+        /*
+        Que es MVVM en VUE?
+        Es el patrón que usa Vue para conectar el estado (data) con la plantilla HTML (template) a través 
+        de una instancia intermedia (el ViewModel), permitiendo que si uno cambia, el otro se 
+        actualice automáticamente.
+        */
+    </script>
+
+    <!--VUE CDN-->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</body>
+
+</html>

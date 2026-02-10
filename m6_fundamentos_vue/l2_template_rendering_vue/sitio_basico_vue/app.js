@@ -1,3 +1,5 @@
+// Option API
+
 const { createApp } = Vue; // Importa la función createApp desde el objeto Vue
 const alert_warning = 'alert-warning';
 const alert_success = 'alert-success';

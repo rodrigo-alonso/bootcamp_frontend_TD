@@ -1,0 +1,104 @@
+{
+  "meta": {
+    "source": "One Piece Universe",
+    "count": 5,
+    "currency": "Belly"
+  },
+  "personajes": [
+    {
+      "id": 1,
+      "nombre": "Monkey D. Luffy",
+      "apodo": "Sombrero de Paja",
+      "edad": 19,
+      "tripulacion": "Piratas de Sombrero de Paja",
+      "rol": "Capitán",
+      "recompensa": 3000000000,
+      "fruta_del_diablo": {
+        "tiene_fruta": true,
+        "nombre": "Hito Hito no Mi, Modelo: Nika",
+        "tipo": "Zoan Mítica"
+      },
+      "haki": [
+        "Haoshoku (Conquistador)",
+        "Busoshoku (Armadura)",
+        "Kenbunshoku (Observación)"
+      ],
+      "estado": "Vivo"
+    },
+    {
+      "id": 2,
+      "nombre": "Roronoa Zoro",
+      "apodo": "Cazador de Piratas",
+      "edad": 21,
+      "tripulacion": "Piratas de Sombrero de Paja",
+      "rol": "Combatiente / Espadachín",
+      "recompensa": 1111000000,
+      "fruta_del_diablo": {
+        "tiene_fruta": false,
+        "nombre": null,
+        "tipo": null
+      },
+      "haki": [
+        "Haoshoku (Conquistador)",
+        "Busoshoku (Armadura)",
+        "Kenbunshoku (Observación)"
+      ],
+      "estado": "Vivo"
+    },
+    {
+      "id": 3,
+      "nombre": "Nami",
+      "apodo": "Gata Ladrona",
+      "edad": 20,
+      "tripulacion": "Piratas de Sombrero de Paja",
+      "rol": "Navegante",
+      "recompensa": 366000000,
+      "fruta_del_diablo": {
+        "tiene_fruta": false,
+        "nombre": null,
+        "tipo": null
+      },
+      "haki": [],
+      "estado": "Vivo"
+    },
+    {
+      "id": 4,
+      "nombre": "Shanks",
+      "apodo": "El Pelirrojo",
+      "edad": 39,
+      "tripulacion": "Piratas del Pelirrojo",
+      "rol": "Capitán / Yonko",
+      "recompensa": 4048900000,
+      "fruta_del_diablo": {
+        "tiene_fruta": false,
+        "nombre": null,
+        "tipo": null
+      },
+      "haki": [
+        "Haoshoku (Conquistador)",
+        "Busoshoku (Armadura)",
+        "Kenbunshoku (Observación)"
+      ],
+      "estado": "Vivo"
+    },
+    {
+      "id": 5,
+      "nombre": "Marshall D. Teach",
+      "apodo": "Barbanegra",
+      "edad": 40,
+      "tripulacion": "Piratas de Barbanegra",
+      "rol": "Almirante / Yonko",
+      "recompensa": 3996000000,
+      "fruta_del_diablo": {
+        "tiene_fruta": true,
+        "nombre": ["Yami Yami no Mi", "Gura Gura no Mi"],
+        "tipo": ["Logia", "Paramecia"]
+      },
+      "haki": [
+        "Busoshoku (Armadura)",
+        "Kenbunshoku (Observación)"
+      ],
+      "estado": "Vivo"
+    }
+  ]
+}
