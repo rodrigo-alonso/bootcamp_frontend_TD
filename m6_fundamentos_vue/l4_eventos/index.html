@@ -60,6 +60,40 @@
             </div>
         </div>
 
+        <!--Eventos de formulario-->
+        <card class="card mb-3">
+            <div class="card-header">
+                <h2>Formulario</h2>
+            </div>
+            <div class="card-body">
+                <form action=""
+                      @submit.prevent="enviarFormulario">
+                    <input v-model="nombre"
+                           @keydown="registrarTecla"
+                           @keyup="registrarTecla"
+                           @input="registrarEventoInput"
+                           @blur="registrarEvento('blur input')"
+                           @keydown.ctrl.m.exact="seleccionarTodo"
+                           @focus="registrarEvento('Focus input Formulario')"
+                           type="text"
+                           class="form-control mb-2"
+                           placeholder="Escribe tu nombre y luego selecciona tu pais...">
+                    <label for="pais" class="mb-2">Selecciona tu país</label>
+                    <select v-model="pais"
+                            @change="eventoChange"
+                            name="pais"
+                            id="pais"
+                            class="form-control mb-3">
+                        <option value="">Seleccione país</option>
+                        <option value="Chile">Chile</option>
+                        <option value="Argentina">Argentina</option>
+                        <option value="Brasil">Brasil</option>
+                    </select>
+                    <button class="btn btn-success">Enviar</button>
+                </form>
+            </div>
+        </card>
+
         <!--Log de los eventos-->
         <div class="card">
             <div class="card-header">
