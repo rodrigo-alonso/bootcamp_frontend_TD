@@ -1,26 +1,28 @@
 /*
- * Archivo: MainLayoutComponent.vue
- * Descripción: Componente raíz de la aplicación, que incluye la barra de navegación, el área principal para las vistas y el pie de página.
- * Autor: Rodrigo
- * Fecha: 2024-06-15
- */
+* Componente raíz de la aplicación, que incluye la barra de
+* navegación, el área principal para las vistas y el pie de página.
+*/
 <template>
-  <NavBarComponent/>
+  <!--Se agrega navbar-->
+  <NavBarComponent />
 
+  <!-- Tag Main: Indica que es el contenido principal de la pagina -->
   <main class="container my-4">
     <router-view v-slot="{ Component }">
-      <transition name="fade-slide" mode="out-in">
+      <transition name="fade-slide"
+                  mode="out-in">
         <component :is="Component" />
       </transition>
-    </router-view> 
+    </router-view>
   </main>
 
-  <FooterComponent/>
+  <!--Se agrega footer-->
+  <FooterComponent />
 </template>
 
 <script setup>
-import NavBarComponent from './components/NavBarComponent.vue'
-import FooterComponent from './components/FooterComponent.vue';
+import NavBarComponent from '../components/NavBarComponent.vue'
+import FooterComponent from '../components/FooterComponent.vue';
 </script>
 
 <style>

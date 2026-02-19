@@ -2,6 +2,7 @@
 
   <div class="card shadow-lg">
     <div class="card-body">
+
       <!--Nombre-->
       <div v-if="!nombre"
            class="mb-3">
@@ -9,8 +10,7 @@
                class="form-label">Nombre:</label>
         <input v-model="nombreTemporal"
                type="text"
-               class="form-control"
-               id="nombre">
+               class="form-control"/>
         <button @click="guardarNombre"
                 class="btn btn-primary mt-2">Guardar Nombre</button>
       </div>
@@ -25,6 +25,7 @@
         <form @submit.prevent="registrar">
           <div class="row">
             <div class="col-md-4">
+              <!--v-model.number se usa para convertir el valor a número y no dejarlos como string-->
               <input v-model.number="edad"
                      type="number"
                      class="form-control"
@@ -51,18 +52,19 @@
           <button class="btn btn-success mt-3">Calcular IMC</button>
         </form>
       </div>
+
       <!--Resultado-->
       <div v-if="imc"
-           class="my-3">
+           class="my-3 text-center">
         <div class="alert"
-             :class="['alert', alertEstado]"
-             role="alert"
-             S>
+             :class="[alertEstado]"
+             role="alert">
           <h4 class="alert-heading">Resultados</h4>
           <hr>
           <p>IMC: {{ imc }}</p>
-
+          <p class="mb-0">Estado: {{ estado }}</p>
         </div>
+
       </div>
     </div>
   </div>
@@ -70,13 +72,29 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+// - Ref: es una función de Vue que permite crear variables reactivas, es decir, variables que cuando cambian su valor, 
+// la interfaz de usuario se actualiza automáticamente para reflejar ese cambio. 
+// - Computed: es otra función de Vue que permite crear propiedades computadas, que son valores derivados de otras variables 
+// reactivas y se recalculan automáticamente cuando esas variables cambian.
+import { ref, computed } from 'vue';
 
-const nombre = ref(localStorage.getItem("nombre"));
+// Constantes para uso interno del componente
+const IMC_BAJO_PESO = 18.5;
+const IMC_PESO_NORMAL = 25;
+const IMC_SOBREPESO = 30;
+const BAJO_PESO = 'Bajo peso';
+const PESO_NORMAL = 'Peso normal';
+const SOBREPESO = 'Sobrepeso';
+const OBESIDAD = 'Obesidad';
+
+// Variables reactivas para almacenar los datos del formulario, el resultado del IMC y el estado del IMC
+const nombre = ref(localStorage.getItem("nombre")); // Se inicializa con el valor del localStorage para mantener el estado al recargar la página
 const nombreTemporal = ref(''); // Al ser un string se inicializa con cadena vacía para evitar problemas de tipo
+
 const edad = ref(null); // Al ser numero se inicializa con null para evitar problemas de tipo
 const peso = ref(null);
 const altura = ref(null);
+
 const imc = ref(null);
 const estado = ref('');
 
@@ -88,23 +106,23 @@ const guardarNombre = () => {
 
 // Función para eliminar el nombre del localStorage y actualizar la variable reactiva
 const eliminarNombree = () => {
-  localStorage.removeItem('nombre');
+  localStorage.removeItem('nombre'); // Eliminar el nombre del localStorage
+  localStorage.removeItem('registros'); // Eliminar también los registros asociados al paciente
   nombre.value = null;
   nombreTemporal.value = null; // Limpiar el campo temporal
+  imc.value = null; // Limpiar el resultado del IMC
+  estado.value = null; // Limpiar el estado del IMC
 };
 
+// Función para calcular el IMC, determinar el estado y guardar el registro en localStorage
 const registrar = () => {
-  imc.value = peso.value / ((altura.value / 100) ** 2).toFixed(2);
+  imc.value = (peso.value / (altura.value ** 2)).toFixed(2); // Se calcula el IMC y se redondea a 2 decimales
 
-  if (imc.value < 18.5) {
-    estado.value = 'Bajo peso';
-  } else if (imc.value >= 18.5 && imc.value < 25) {
-    estado.value = 'Peso normal';
-  } else if (imc.value >= 25 && imc.value < 30) {
-    estado.value = 'Sobrepeso';
-  } else {
-    estado.value = 'Obesidad';
-  }
+  // Determinar el estado del IMC según los rangos establecidos
+  if (imc.value < IMC_BAJO_PESO) estado.value = BAJO_PESO;
+  else if (imc.value < IMC_PESO_NORMAL) estado.value = PESO_NORMAL;
+  else if (imc.value < IMC_SOBREPESO) estado.value = SOBREPESO;
+  else estado.value = OBESIDAD;
 
   // Obtener los registros existentes del localStorage o inicializar un array vacío si no hay registros
   const registros = JSON.parse(localStorage.getItem('registros')) || [];
@@ -129,14 +147,15 @@ const registrar = () => {
   altura.value = null;
 };
 
-// Computed properties para asignar clases dinámicamente según el estado del IMC
 // Computed hace que se recalculen automáticamente cuando cambie el valor de estado, 
 // lo que permite actualizar las clases CSS de forma reactiva en la plantilla.
+
+// Funcion para asignar clases alert dinámicamente según el estado del IMC
 const alertEstado = computed(() => ({
-  'alert-primary': estado.value === 'Bajo peso',
-  'alert-success': estado.value === 'Peso normal',
-  'alert-warning': estado.value === 'Sobrepeso',
-  'alert-danger': estado.value === 'Obesidad'
+  'alert-warning': estado.value === BAJO_PESO,
+  'alert-success': estado.value === PESO_NORMAL,
+  'alert-warning text-danger': estado.value === SOBREPESO,
+  'alert-danger': estado.value === OBESIDAD
 }));
 
 </script>

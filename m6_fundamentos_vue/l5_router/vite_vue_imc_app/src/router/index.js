@@ -1,4 +1,5 @@
-import { createRouter, createWebHistory } from 'vue-router' // Importacion de las vistas
+import { createRouter, createWebHistory } from 'vue-router' 
+// Importacion de las vistas
 import MainLayoutComponent from '../components/MainLayoutComponent.vue'
 import HomeView from '../views/HomeView.vue'
 import RegistroView from '../views/RegistroView.vue'
