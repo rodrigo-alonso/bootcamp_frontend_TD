@@ -1,0 +1,14 @@
+#Snipets - VUE
+
+## Existen dos forma de usar vue:
+- Option API (Vue 2 y 3)
+
+- Composition API (Vue 3) *Moderno
+
+Interpolacion de variables para mostrar datos en vue 
+{{ variable }}
+
+
+## En Vue 3 se prefiere usar Arrow Function:
+const funcion = () => {...code};
+- En <script setup> todo debe ser variable, no usa this

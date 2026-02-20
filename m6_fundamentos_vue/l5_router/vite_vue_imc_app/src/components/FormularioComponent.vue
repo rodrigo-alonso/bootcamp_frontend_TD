@@ -4,13 +4,12 @@
     <div class="card-body">
 
       <!--Nombre-->
-      <div v-if="!nombre"
-           class="mb-3">
+      <div v-if="!nombre">
         <label for="nombre"
                class="form-label">Nombre:</label>
         <input v-model="nombreTemporal"
                type="text"
-               class="form-control"/>
+               class="form-control" />
         <button @click="guardarNombre"
                 class="btn btn-primary mt-2">Guardar Nombre</button>
       </div>
@@ -64,8 +63,8 @@
           <p>IMC: {{ imc }}</p>
           <p class="mb-0">Estado: {{ estado }}</p>
         </div>
-
       </div>
+      
     </div>
   </div>
 
