@@ -30,6 +30,7 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits(['eliminar'])
+// Definir el evento "eliminar" que el componente emitirá cuando se haga clic en el botón de eliminar
+const emit = defineEmits(['eliminar']) 
 
 </script>

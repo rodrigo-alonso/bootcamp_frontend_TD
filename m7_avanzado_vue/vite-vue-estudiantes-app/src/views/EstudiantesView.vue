@@ -26,6 +26,7 @@ import { ref, onMounted } from 'vue';
 import { estudiantesMock } from '../data/estudiantes';
 import EstudianteCardComponent from '../components/EstudianteCardComponent.vue';
 import Swal from 'sweetalert2';
+import { es } from 'vuetify/locale'; // Importar el idioma español para Vuetify
 
 const estudiantes = ref([]);
 
@@ -46,19 +47,21 @@ const eliminar = async (id) => {
     icon: 'warning',
     showCancelButton: true,
     confirmButtonText: 'Sí, eliminar',
-    cancelButtonText: 'Cancelar'
+    cancelButtonText: 'Cancelar',
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#3085d6'
   });
 
-  if (resultado.isConfirmed) {
-    estudiantes.value = estudiantes.value.filter(e => e.id != id);
-    localStorage.setItem('estudiantes', JSON.stringify(estudiantes.value));
+  if (resultado.isConfirmed) { // Si el usuario confirma la eliminación
+    estudiantes.value = estudiantes.value.filter(e => e.id != id); // Filtrar el estudiante eliminado de la lista
+    localStorage.setItem('estudiantes', JSON.stringify(estudiantes.value)); // Actualizar el localStorage con la nueva lista de estudiantes 
 
-    Swal.fire({
+    Swal.fire({ // Mostrar una alerta de éxito después de eliminar el estudiante
       title: 'Eliminado',
-      Text: 'El estudiante ha sido eliminado',
+      text: 'El estudiante ha sido eliminado correctamente',
       icon: 'success',
       timer: 1000,
-      showConfirmButton: true
+      showConfirmButton: false
     });
   };
 };

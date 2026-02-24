@@ -7,3 +7,9 @@
                  class="btn btn-primary mt-3">Volver al inicio</router-link>
   </div>
 </template>
+
+<script setup>
+import { useRoute } from 'vue-router'; // Importa el hook useRoute para acceder a la ruta actual
+
+const route = useRoute(); // Obtiene la ruta actual
+</script>
