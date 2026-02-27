@@ -10,19 +10,62 @@
           rel="stylesheet"
           integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
           crossorigin="anonymous">
+    <!--CDN Bootstrap icons-->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
     <title>Ejercicio Practico 1</title>
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand"
+               href="#">
+                <i class="bi bi-emoji-smile"></i> One Piece</a>
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse"
+                 id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active"
+                       aria-current="page"
+                       href="#">Personajes</a>
+                </div>
+            </div>
+        </div>
+    </nav>
     <div id="app"
-         class="container my-5">
+         class="container my-5 text-center">
+        <div v-for="personaje in personajes" :key="personaje.id" class="row">
+            <div class="col">
+                <div class="card shadow mb-4">
+                    <div class="card-header text-center">
+                        <h2 class="card-title">Personaje</h2>
+                    </div>
+                    <div class="card-body text-center">
+                        <ul class="list-group list-group-flush">
+                            <li v-model="personaje"
+                                class="list-group-item"><strong>Personaje: </strong> {{ personaje }}</li>
+                        </ul>
+                </div>
+            </div>
+        </div>
         <div class="card shadow mb-4">
             <div class="card-header text-center">
                 <h2 class="card-title">Usuario</h2>
             </div>
             <div class="card-body text-center">
                 <ul class="list-group list-group-flush">
-                    <li v-model="nombre" class="list-group-item"><strong>Nombre: </strong> {{ nombre }}</li>
+                    <li v-model="nombre"
+                        class="list-group-item"><strong>Nombre: </strong> {{ nombre }}</li>
                 </ul>
             </div>
         </div>
