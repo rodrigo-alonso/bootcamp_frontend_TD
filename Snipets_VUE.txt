@@ -1,14 +1,49 @@
 #Snipets - VUE
 
+## Instalar VUE
+1. Instalar nvm -> https://www.nvmnode.com/
+2. nvm install --lts -> Instala node y npm latest version
+3. Instalar vue-cli -> npm install -g @vue/cli (Para usar vue-cli)
+
+### Crear y ejecutar programa con VUE-CLI
+. vue create proyecto-nuevo
+. npm run serve
+
+### Crear y ejecutar programa con VITE (vite viene con 
+. npm create vite@latest proyecto-nuevo
+. npm run dev
+
 ## Existen dos forma de usar vue:
 - Option API (Vue 2 y 3)
-
+`export default {
+  data() {
+    return {
+      contador: 0
+    }
+  },
+  methods: {
+    sumar() {
+      this.contador++;
+    }
+  }
+}`
 - Composition API (Vue 3) *Moderno
+`<script setup>
+	import { ref } from 'vue';
+	const contador = ref(0);
+	function sumar() {
+		contador.value++;
+	}
+</script>`
 
-Interpolacion de variables para mostrar datos en vue 
-{{ variable }}
+## One-way y Two-way data bingind
+- One-way: Informacion va unidireccional: js -> html
+- Two-way: Informacion va bidireccional: js <-> html
 
+'v-bind:class' | ':class': Vincular una variables dentro de un atributo html (one-way)
+'{{ variable }}': Interpolacion de variables para mostrar datos en html (one-way)
+'v-model='var': Une una variable de .js con un valor de html para que sea reactiva (two-way)
 
-## En Vue 3 se prefiere usar Arrow Function:
-const funcion = () => {...code};
-- En <script setup> todo debe ser variable, no usa this
+En Vue 3 se prefiere usar Arrow Function: const funcion = () => {...code};
+
+En <script setup> todo debe ser variable, no usa this
