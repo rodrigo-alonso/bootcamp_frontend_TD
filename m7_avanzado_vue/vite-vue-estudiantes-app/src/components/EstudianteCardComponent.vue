@@ -10,7 +10,9 @@
       <p>{{ estudiante.email }}</p>
     </v-card-text>
     <v-card-actions class="justify-center">
-      <v-btn variant="tonal"
+      <!--Enrutamiento dinamico con id a EstudianteDetailView-->
+      <v-btn @click="router.push(`/estudiantes/${estudiante.id}`)"
+             variant="tonal"
              color="primary">Ver</v-btn>
       <v-btn @click="emit('eliminar', estudiante.id)"
              variant="tonal"
@@ -21,6 +23,7 @@
 
 <script setup>
 import { defineProps, defineEmits } from 'vue';
+import { useRouter } from 'vue-router';
 
 // Definir las propiedades que el componente recibirá
 const props = defineProps({
@@ -31,6 +34,8 @@ const props = defineProps({
 });
 
 // Definir el evento "eliminar" que el componente emitirá cuando se haga clic en el botón de eliminar
-const emit = defineEmits(['eliminar']) 
+const emit = defineEmits(['eliminar']);
+
+const router = useRouter(); // Obtener el router para navegar a otras vistas
 
 </script>

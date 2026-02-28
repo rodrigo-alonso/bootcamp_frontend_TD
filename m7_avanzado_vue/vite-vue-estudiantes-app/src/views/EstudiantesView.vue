@@ -4,11 +4,15 @@
     <!-- Fila para contener las tarjetas de los estudiantes -->
     <v-row>
       <!-- Renderizar una tarjeta por cada estudiante en la lista -->
+      <!-- cols=12 -> movil ocupa 100% -->
+      <!-- md=3 en pantallas medianas ocupa 12/3 = 4 columnas x fila -->
       <v-col cols="12"
              md="3"
              v-for="estudiante in estudiantes"
              :key="estudiante.id">
         <!-- Aquí se renderizará el componente EstudianteCardComponent para cada estudiante -->
+        <!-- :estudiante Envia datos de estudiantte al hijo (EstudiantesView -> EstudianteCardComponenet) -->
+        <!-- @eliminar="eliminar" Escucha evento que lanza hijo y ejecuta funcion eliminar (EstudianteCardComponenet -> EstudiantesView)  -->
         <EstudianteCardComponent :estudiante="estudiante"
                                  @eliminar="eliminar" />
       </v-col>
