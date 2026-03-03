@@ -1,5 +1,5 @@
 <template>
-  <!--  -->
+
   <v-data-table :headers="headers"
                 :items="countries"
                 item.key="cca3">
@@ -13,6 +13,7 @@
              width="40" />
     </template>
     <template #item.name="{ item }">
+      <!-- cca3 es el codigo unico por pais (definido x la API, es como el id) -->
       <RouterLink :to="`/pais/${item.cca3}`">
         {{ item.translations.spa.common }}
       </RouterLink>

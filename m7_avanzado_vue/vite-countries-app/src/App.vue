@@ -1,10 +1,10 @@
 <template>
   <v-app>
-    <NavBarComponent v-if="!is404"/>
+    <NavbarComponent v-if="!is404"/>
     <v-main>
       <router-view v-slot="{Component}">
         <transition name="fade" mode="out-in">
-          component is/>
+          <component :is="Component"/>
         </transition>
       </router-view>
     </v-main>
@@ -23,12 +23,12 @@ const is404 = computed(() => route.name === 'NotFound');
 
 <style>
 .fade-enter-active,
-.fade.leave.active {
+.fade-leave-active {
   transition: opacity 0.3s ease;
 }
 
 .fade-enter-from,
 .fade-leave-to {
-  transition: opacity;
+  opacity: 0;
 }
 </style>

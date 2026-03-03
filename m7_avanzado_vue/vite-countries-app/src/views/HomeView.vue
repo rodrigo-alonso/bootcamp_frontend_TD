@@ -1,36 +1,19 @@
 <template>
-  
-  <!--  -->
-  <v-data-table :headers="headers"
-                :items="countries"
-                item.key="cca3">
-    <template #item.flags="{ item }">
-      <v-img :src="item.flags.svg"
-             width="40"
-             :alt="item.alt" />
-    </template>
-  </v-data-table>
-
+  <v-container>
+    <h1 class="mb-4">Listado Países</h1>
+    <CountriesTableComponent :countries="countries" />
+  </v-container>
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router';
+import { ref, onMounted } from 'vue';
+import { getCountries } from '../services/countrieService';
+import CountriesTableComponent from '../components/CountriesTableComponent.vue';
 
-// Definimos las props que el componente recibirá, en este caso una lista de países
-const props = defineProps({
-  countries: Array
+const countries = ref([])
+
+onMounted(async () => {
+  countries.value = await getCountries()
 })
-
-// Obtenemos el router para poder navegar a la vista de detalle de cada país
-const router = useRouter();
-
-// Definimos la estructura del encabezado de la tabla
-const header = [
-  { title: 'Bandera', key: 'flags' },
-  { title: 'Escudo de Armas', key: 'coatOfArms' },
-  { title: 'Pais', key: 'name' },
-  { title: 'Capital', key: 'capital' },
-  { title: 'Region', key: 'region' },
-]
 
 </script>
