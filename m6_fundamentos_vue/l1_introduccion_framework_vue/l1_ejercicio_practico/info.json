@@ -15,8 +15,8 @@
       "recompensa": 3000000000,
       "fruta_del_diablo": {
         "tiene_fruta": true,
-        "nombre": "Hito Hito no Mi, Modelo: Nika",
-        "tipo": "Zoan Mítica"
+        "nombre": ["Hito Hito no Mi, Modelo: Nika"],
+        "tipo": ["Zoan Mítica"]
       },
       "haki": [
         "Haoshoku (Conquistador)",

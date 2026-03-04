@@ -44,43 +44,53 @@
     </nav>
     <div id="app"
          class="container my-5 text-center">
-        <div v-for="personaje in personajes" :key="personaje.id" class="row">
-            <div class="col">
+        <!-- row-cols-3: SIEMPRE tenga 3 columnas x fila. g-3: gap entre columnas -->
+        <!-- Responsivo: row-cols-1 row-cols-md-2 row-cols-lg-3: (movil: 1, tablet: 2, desktop: 3)-->
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+            <div v-if="personajes.length === 0"
+                 class="col">
+                <div class="alert alert-info"
+                     role="alert">
+                    No hay personajes disponibles.
+                </div>
+            </div>
+            <div v-for="personaje in personajes"
+                 :key="personaje.id"
+                 class="col">
                 <div class="card shadow mb-4">
                     <div class="card-header text-center">
-                        <h2 class="card-title">Personaje</h2>
+                        <h2 class="card-title">{{ personaje.nombre }}</h2>
                     </div>
                     <div class="card-body text-center">
-                        <ul class="list-group list-group-flush">
-                            <li v-model="personaje"
-                                class="list-group-item"><strong>Personaje: </strong> {{ personaje }}</li>
-                        </ul>
+                        <p><strong>Apodo: </strong>{{ personaje.apodo }}</p>
+                        <p><strong>Edad: </strong>{{ personaje.edad }}</p>
+                        <!-- ?. optional chaining evita errores por null o undefined-->
+                        <div v-if="personaje.fruta_del_diablo.tiene_fruta">
+                            <p><strong>Tipo de fruta del diablo: </strong>
+                                {{ personaje.fruta_del_diablo.nombre?.join(', ') }}</p>
+                            <p><strong>Tipo: </strong>{{ personaje.fruta_del_diablo.tipo?.join(', ') }}</p>
+                        </div>
+                        <p v-else><strong>Fruta del diablo: </strong>No tiene fruta del diablo</p>
+                        <div v-if="personaje.haki.length > 0">
+                            <p><strong>Haki: </strong>
+                                {{ personaje.haki.join(', ') }}</p>
+                        </div>
+                        <p v-else><strong>Haki: </strong>No tiene haki</p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="card shadow mb-4">
-            <div class="card-header text-center">
-                <h2 class="card-title">Usuario</h2>
-            </div>
-            <div class="card-body text-center">
-                <ul class="list-group list-group-flush">
-                    <li v-model="nombre"
-                        class="list-group-item"><strong>Nombre: </strong> {{ nombre }}</li>
-                </ul>
-            </div>
-        </div>
-    </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-            crossorigin="anonymous"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+                crossorigin="anonymous"></script>
 
-    <!--VUE CDN-->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <!--VUE CDN-->
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
-    <!--App JS-->
-    <script src="app.js"></script>
+        <!--App JS-->
+        <script src="app.js"></script>
 
 </body>
 
