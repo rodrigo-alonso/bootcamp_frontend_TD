@@ -1,0 +1,2 @@
+Columnas x filas responsivo
+row-cols-1 row-cols-md-2 row-cols-lg-3: (movil: 1, tablet: 2, desktop: 3)
