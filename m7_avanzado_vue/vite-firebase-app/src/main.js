@@ -11,7 +11,7 @@ import '@mdi/font/css/materialdesignicons.css';
 // Idem a usar la forma createApp(App).use(router).use(vuetify).mount('#app')
 const app = createApp(App);
 
-app.use(createPinia);
+app.use(createPinia());
 app.use(router);
 app.use(vuetify);
 app.use(Toast);

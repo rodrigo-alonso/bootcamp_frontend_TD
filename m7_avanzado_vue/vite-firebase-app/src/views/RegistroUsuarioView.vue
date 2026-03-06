@@ -1,3 +1,9 @@
 <template>
-  <h1>Registro de Usuario</h1>
+  <v-container>
+    <UserFormComponent />
+  </v-container>
 </template>
+
+<script setup>
+
+</script>

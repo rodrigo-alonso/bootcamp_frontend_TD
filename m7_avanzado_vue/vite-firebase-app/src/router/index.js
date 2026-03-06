@@ -7,6 +7,7 @@ import RegistroUsuarioView from "../views/RegistroUsuarioView.vue";
 import MetricasView from "../views/MetricasView.vue";
 import NotFoundView from "../views/NotFoundView.vue";
 
+// Configuración de rutas para la aplicación, definiendo los caminos y los componentes asociados a cada ruta.
 const routes = [
   {
     path: '/',
@@ -40,7 +41,7 @@ const routes = [
   },
   {
     path: '/404',
-    name: 'notfound',
+    name: 'notFound',
     component: NotFoundView
   },
   {

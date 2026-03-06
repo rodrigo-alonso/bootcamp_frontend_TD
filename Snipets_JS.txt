@@ -1,10 +1,16 @@
 ?. optional chaining: Evita errores de null o undefined en objetos
 
 ... -> Spread: Desempaquetar o exparcir 
+
 a) Copiar o Unir dos arrary (const c = [...a, ...b])  
 b) Clonar objetos (obj1 = obj2) si cambia uno cambia el otro, comparten memoria (copia superficial)
 c) Argumentos a una funcion: Math.max(...numeros) // numeros = [1,2,3] -> 3
 ... -> Rest: Empaquetar o agrupar
+a) Parametros infinitos en funciones: sumar = (...numeros) => {...code} // dentro de la funcion ahora numeros es un array de tamaño n
+b) Destructuracion: Extraer variables de un array o objeto
+const a = [a,b,c,d] -> const [1,2,...3] = a -> // a=1, b=2, c=[3,4]
+const x = { a: "F", b: "M", c: 2, d: "R" } -> const {a, ...e} = x // a="F", e={b: "M", c: 2, d: "R"}
 
 
-.join(', '): Une los elementos de una lista con una coma y espacio
+.join(', '): Transforma a texto y une los elementos de una lista con una coma y espacio (', ' -> pegamento)
+
