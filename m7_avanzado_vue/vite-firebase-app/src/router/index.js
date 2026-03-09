@@ -30,7 +30,7 @@ const routes = [
     component: UsuarioDetailView
   },
   {
-    path: '/usuarios/:id/editar',
+    path: '/usuario/:id/editar',
     name: 'editar',
     component: EditarUsuarioView
   },

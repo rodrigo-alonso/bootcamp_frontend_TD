@@ -2,7 +2,12 @@
   <v-app>
     <NavBarComponent v-if="showLayout" />
     <v-main class="main-background">
-      <router-view />
+      <router-view v-slot="{ Component }">
+        <transition name="fade-slide"
+                    mode="out-in">
+          <component :is="Component" />
+        </transition>
+      </router-view>
     </v-main>
     <FooterComponent v-if="showLayout" />
     <!-- Snackbar para mostrar mensajes de notificación -->
@@ -20,7 +25,6 @@ import FooterComponent from '../components/FooterComponent.vue';
 import { useRoute } from 'vue-router';
 import { useUiStore } from './stores/uiStore';
 import { computed } from 'vue';
-import router from './router';
 
 const route = useRoute();
 const ui = useUiStore();
@@ -36,5 +40,25 @@ const showLayout = computed(() => {
 .main-background {
   background: #e1e4e7;
   min-height: 90vh;
+}
+
+.border-flag {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+  transition: all 0.3s ease;
+}
+
+.fade-slide-enter-from {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.fade-slide-leave-to {
+  opacity: 0;
+  transform: translateX(-20px);
 }
 </style>

@@ -1,0 +1,2 @@
+Dudas clase 09/03
+- Si hay dos usuarios(a,b) y a edita o crea un nuevo usuario, pinia de b, lo detecta?

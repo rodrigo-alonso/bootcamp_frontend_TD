@@ -8,7 +8,7 @@ import { db } from '../services/firebaseService'; // Es la base de datos a la qu
 // deleteDoc: eliminar un documento de la coleccion
 // updateDoc: actualizar un documento de la coleccion
 // doc: obtener una referencia a un documento específico en la colección
-import { collection, addDoc, getDocs, deleteDoc, updateDoc, doc } from "firebase/firestore";
+import { collection, addDoc, getDocs, deleteDoc, updateDoc, doc, query, where } from "firebase/firestore";
 
 /*
 TIPS: 
@@ -61,7 +61,7 @@ export const useUsersStore = defineStore('users', {
       const docRef = await addDoc(collection(db, "users"), userData)
       this.users.push({
         id: docRef.id,
-        ...userData // Agregar los datos del nuevo usuario al estado del store (spread operator para incluir todas las propiedades del usuario)
+        ...userData // Agregar los datos del nuevo usuario al estado del store (spread operator)
       })
     },
 
@@ -71,11 +71,32 @@ export const useUsersStore = defineStore('users', {
       this.users = this.users.filter(e => e.id !== id);
     },
 
-    // Actualizar un usuario en la base de datos utilizando su ID y los nuevos datos, y luego actualizar el estado del store para reflejar los cambios.
+    // Actualizar un usuario en la base de datos utilizando su ID y los nuevos datos, y 
+    // luego actualizar el estado del store para reflejar los cambios.
     async updateUser(id, data) {
-      await updateDoc(doc(db, 'users', id), data);
-      const index = this.users.findIndex(e => e.id === id);
-      this.users[index] = { id, ...data }
+      try {
+        const ref = doc(db, 'users', id);
+        await updateDoc(ref, data);
+        const index = this.users.findIndex(e => e.id === id);
+        if (index !== -1) {
+          this.users[index] = { id, ...data }
+        };
+      } catch (error) {
+        console.error('Error actualizando usuario', error);
+        throw error; // Re-lanzar el error para que pueda ser manejado por el componente que llama a esta función
+      }
+
     }
+  },
+  
+  // Método para verificar si un email o rut ya existe en la base de datos, excluyendo el usuario actual (en caso de edición).
+  userExists(email, rut, currentId = null) {
+    const emailExists = this.users.some(u =>
+      u.email === email && u.id !== currentId
+    )
+    const rutExists = this.users.some(u =>
+      u.rut === rut && u.id !== currentId
+    )
+    return { emailExists, rutExists } // retorna un objeto { emailExists, rutExists } con los resultados de las verificaciones
   }
 });

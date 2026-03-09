@@ -5,5 +5,5 @@
 </template>
 
 <script setup>
-
+import UserFormComponent from '../components/UserFormComponent.vue';
 </script>

@@ -1,9 +1,24 @@
 #Snipets - VUE
 
+## Node, NVM, NPM, VITE, NPX
+Node: Entorno que permite que javascript corra en el pc (requerido para usar vue)
+npm: Node Package Manager: Gestor de paquetes y libreerias que necesita los proyectos vue
+npx: Node Package Executor: Ejecuta herramientas sin instalarlas globalmente (crear proyecto de vue)
+nvm: Node Version Manager: Gestor de versiones de node, que puede variar entre proyectos
+vite: Herramienta para crear y ejecutar proyecto vue de forma veloz.
+
 ## Instalar VUE
 1. Instalar nvm -> https://www.nvmnode.com/
 2. nvm install --lts -> Instala node y npm latest version
-3. Instalar vue-cli -> npm install -g @vue/cli (Para usar vue-cli)
+3. (Opcional) Instalar vue-cli -> npm install -g @vue/cli (Para usar vue-cli)
+4. (Opcional) Usar npx -> npx create-vue mi-proyecto (ejecutor de paquetes instala sin instalacion global)
+5. (Opcional) Instala c/vite -> npm create vite@latest mi-proyecto / npx create-vite@latest
+
+### Verificar paquetes
+npm list -g --depth=0 -> Lista paquetes instalados globalmente
+
+### NVM: Node version manager
+Es un paquete que gestionas las versiones de node.js
 
 ### Crear y ejecutar programa con VUE-CLI
 . vue create proyecto-nuevo
