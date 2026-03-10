@@ -1,3 +1,5 @@
 <template>
-  <h1>Página no encontrada</h1>
+  <v-empty-state headline="Whoops, 404" title="Pagina no encontrada" text="La pagina ">
+    
+  </v-empty-state>
 </template>

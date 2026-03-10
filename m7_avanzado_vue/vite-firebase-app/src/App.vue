@@ -2,7 +2,12 @@
   <v-app>
     <NavBarComponent v-if="showLayout" />
     <v-main class="main-background">
-      <router-view v-slot="{ Component }">
+      <!-- Barra de progreso al iniciar sesion -->
+      <v-progress-linear v-if="auth.loading"
+                         indeterminate
+                         color="primary" />
+      <router-view v-else
+                   v-slot="{ Component }">
         <transition name="fade-slide"
                     mode="out-in">
           <component :is="Component" />
@@ -25,9 +30,11 @@ import FooterComponent from '../components/FooterComponent.vue';
 import { useRoute } from 'vue-router';
 import { useUiStore } from './stores/uiStore';
 import { computed } from 'vue';
+import { useAuthStore } from './stores/authStore';
 
 const route = useRoute();
 const ui = useUiStore();
+const auth = useAuthStore();
 
 // Computed property que determina si se debe mostrar el layout (NavBar y Footer) en función de 
 // la ruta actual. Si la ruta es 'notFound', no se muestra el layout.

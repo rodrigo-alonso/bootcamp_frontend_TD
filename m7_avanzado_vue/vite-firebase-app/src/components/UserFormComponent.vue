@@ -116,7 +116,7 @@
 import { ref, defineProps, onMounted } from 'vue';
 import { useUsersStore } from '../stores/usersStore';
 import { useUiStore } from '../stores/uiStore';
-import { getCountries } from '../services/countriesServices';
+import { getCountries } from '../services/countriesService';
 import { useRouter } from 'vue-router';
 import { useEmail } from '../composables/useEmail'; // Composable para validar email
 import { useRut } from '../composables/useRut'; // Composable para validar rut
