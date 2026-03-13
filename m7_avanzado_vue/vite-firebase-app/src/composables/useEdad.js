@@ -1,6 +1,11 @@
 export function useEdad() {
+
+  const isValidDate = (date) => {
+    // TODO: Copiar codigo profesor
+  };
+
   const calculateEdad = (date) => {
-    if (!date) return '-';
+    if (!date) return '-'; // Si la fecha está vacía, retornar '-'
     const dob = new Date(date); // Convertir la fecha de nacimiento a una fecha de JavaScript
     if (isNaN(dob)) return '-'; // Si la fecha no es válida, retornar '-'
     const today = new Date();  // Obtener la fecha actual
@@ -14,5 +19,6 @@ export function useEdad() {
     }
     return age; // Retornar la edad calculada
   };
-  return { calculateEdad }; // Retorna funcion q se puede usar
+
+  return { isValidDate, calculateEdad }; // Retorna funcion q se puede usar
 };

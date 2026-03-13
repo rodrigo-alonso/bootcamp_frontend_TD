@@ -14,7 +14,7 @@ vite: Herramienta para crear y ejecutar proyecto vue de forma veloz.
 4. (Opcional) Usar npx -> npx create-vue mi-proyecto (ejecutor de paquetes instala sin instalacion global)
 5. (Opcional) Instala c/vite -> npm create vite@latest mi-proyecto / npx create-vite@latest
 
-### Verificar paquetes
+### Verificar paquetes instalados con npm
 npm list -g --depth=0 -> Lista paquetes instalados globalmente
 
 ### NVM: Node version manager
@@ -66,3 +66,5 @@ Es un paquete que gestionas las versiones de node.js
 En Vue 3 se prefiere usar Arrow Function: const funcion = () => {...code};
 
 En <script setup> todo debe ser variable, no usa this
+
+v-slot -> Es un "hueco" que un componente hijo deja al padre para inyectar contenido

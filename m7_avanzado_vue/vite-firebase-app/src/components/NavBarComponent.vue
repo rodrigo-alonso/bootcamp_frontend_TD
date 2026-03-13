@@ -22,7 +22,7 @@
 					 :variant="route.name === 'metricas' ? 'tonal' : 'text'"
 					 to="/metricas"
 					 color="white">Metricas</v-btn>
-		<v-btn v-if="!auth.user"
+		<!-- <v-btn v-if="!auth.user"
 					 :variant="tonal"
 					 to="/login"
 					 color="white">Login</v-btn>
@@ -33,7 +33,7 @@
 		<v-btn v-if="auth.user"
 					 @click="logout"
 					 variant="tonal"
-					 color="white">Logout</v-btn>
+					 color="white">Logout</v-btn> -->
 	</v-app-bar>
 </template>
 
@@ -44,9 +44,9 @@ import { useAuthStore } from '../stores/authStore';
 const route = useRoute();
 const router = useRouter();
 const auth = useAuthStore();
+const tonal = 'tonal';
 
 const logout = async () => {
 	await auth.logout();
-
 }
 </script>

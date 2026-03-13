@@ -1,0 +1,5 @@
+<v-empty-state/> => Se usa para indicar lista vacia o que no se encontraron los resultados de busqueda
+
+<v-spacer/> => Genera espacio flexible entre elementos
+
+<v-data-table/> => Componente para desplegar una tabla tabulada con sort, paginacion, busqueda, grupos y seleccion de filas

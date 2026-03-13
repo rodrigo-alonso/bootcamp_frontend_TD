@@ -20,16 +20,16 @@ const routes = [
     name: 'home',
     component: HomeView
   },
-  {
-    path: '/login',
-    name: 'login',
-    component: LoginView
-  },
-  {
-    path: '/register',
-    name: 'register',
-    component: RegisterView
-  },
+  // {
+  //   path: '/login',
+  //   name: 'login',
+  //   component: LoginView
+  // },
+  // {
+  //   path: '/register',
+  //   name: 'register',
+  //   component: RegisterView
+  // },
   {
     path: '/registro',
     name: 'registro',
@@ -76,36 +76,33 @@ const router = createRouter({
   routes
 });
 
-// Proteger las rutas
-router.beforeEach((to, from, next) => {
-  const auth = useAuthStore();
-  if (auth.loading) {
-    const unwatch = auth.$subscribe(() => {
-      if (!auth.loading) {
-        unwatch();
-        handleRoute();
-      }
-    });
-  } else {
-    handleRoute();
-  };
+// Proteger las rutas que requieren autentificacion.
+// router.beforeEach((to, from, next) => {
+//   const auth = useAuthStore();
+//   if (auth.loading) {
+//     const unwatch = auth.$subscribe(() => {
+//       if (!auth.loading) {
+//         unwatch();
+//         handleRoute();
+//       }
+//     });
+//   } else {
+//     handleRoute();
+//   };
 
-  function handleRoute() {
-    if (auth.user && (to.name === 'login' || to.name === 'register')) {
-      next(from.fullPath || '/');
-      return;
-    };
+//   function handleRoute() {
+//     if (auth.user && (to.name === 'login' || to.name === 'register')) {
+//       next(from.fullPath || '/');
+//       return;
+//     };
 
-    if (to.meta.requiredAuth && !auth.user) {
-      next({
-        path: '/login',
-        query: { redirect: to.fullPath}
-      });
-    };
-  };
-
-  
-
-});
+//     if (to.meta.requiredAuth && !auth.user) {
+//       next({
+//         path: '/login',
+//         query: { redirect: to.fullPath}
+//       });
+//     };
+//   };
+// });
 
 export default router;

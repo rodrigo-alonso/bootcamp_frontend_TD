@@ -36,10 +36,10 @@ const password = ref('');
 const register = async () => {
   try {
     await auth.register(email.value, password.value);
-    ui.showSuccess("Te has registrado satisfactoriamente");
+    ui.showMessage("Te has registrado satisfactoriamente", "success", 3000, "bottom", "tonal", true, false);
     router.push('/'); // Si se autentifica va a la raiz
   } catch (error) {
-    ui.showError("Se ha producido un error al registrar usuario")
+    ui.showMessage("Se ha producido un error al registrar usuario", "error", 3000, "bottom", "tonal", true, false);
     console.error(error);
   }
 }

@@ -45,10 +45,10 @@ const login = async () => {
   try {
     await auth.login(email.value, password.value);
     const redirect = route.query.redirect || '/';
-    ui.showSuccess("Sesion iniciada con exito")
+    ui.showMessage("Sesion iniciada con exito", "success", 3000, "bottom", "tonal", true, false);
     router.push(redirect);
   } catch {
-    ui.showError("Credenciales incorrectas...")
+    ui.showMessage("Credenciales incorrectas...", "error", 3000, "bottom", "tonal", true, false);
   }
 }
 </script>

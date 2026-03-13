@@ -34,3 +34,7 @@ const a = () => {...code} // No se puede usar antes de declarar, herada this
 Funciones pueden retornar objetos
 function a() {a='foo'; b='var'; return {b,c}}
 const d = a // d.b='foo', d.c='var'
+
+Funcion para ordenar listas
+array.sort((a,b) => {...fn_compare}) -> < 0 (a antes q b) | > 0 (b antes q a) | = 0 (mantiene orden)
+array.includes() -> Uno o varios valores de entrada se encuentran en array (true || false)
